@@ -452,7 +452,7 @@
 ;  [(control c) (control f)]
 ;  'insert-fixme)                                      ; insert fixme
 
-;; (require 'php-mode)
+(require 'php-mode)
 
 ;; BINDINGS :: C/C++
 
