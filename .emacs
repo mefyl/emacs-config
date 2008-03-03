@@ -14,6 +14,9 @@
 (defconst xemacs (string-match "XEmacs" emacs-version)
   "non-nil iff XEmacs, nil otherwise")
 
+(defconst emacs22 (string-match "^22." emacs-version)
+  "non-nil iff Emacs 22, nil otherwise")
+
 ;; CUSTOM FUNCTIONS
 
 ;; Compilation
@@ -102,7 +105,7 @@
                       "-" "_"
                       (upcase name)))))
           (goto-char (point-min))
-          (insert "#ifndef " macro "\n")
+         (insert "#ifndef " macro "\n")
           (insert "# define " macro "\n\n")
           (goto-char (point-max))
           (insert "\n#endif\n")))))
@@ -141,7 +144,7 @@
   (interactive "sFixme: ")
   (save-excursion
     (end-of-line)
-    (when (not (looking-back "^\s*"))
+    (when (not (looking-back "^\\s*"))
       (insert " "))
     (setq start (point))
     (insert "FIXME")
@@ -153,7 +156,7 @@
   (interactive "sInclude: \nP")
   (save-excursion
     (beginning-of-line)
-    (when (not (looking-at "\W*$"))
+    (when (not (looking-at "\\W*$"))
       (insert "\n")
       (line-move -1))
     (insert "#include ")
@@ -165,7 +168,7 @@
 
 (defun c-insert-debug (&optional msg)
   (interactive)
-  (when (not (looking-at "\W*$"))
+  (when (not (looking-at "\\W*$"))
     (beginning-of-line)
     (insert "\n")
     (line-move -1))
@@ -265,8 +268,6 @@
 ;(pc-selection-mode)                    ; selection with shift
 (auto-image-file-mode)                  ; to see picture in emacs
 ;(dynamic-completion-mode)              ; dynamic completion
-(when (string-match "^22." emacs-version)
-  (ido-mode t))
 (show-paren-mode t)			; match parenthesis
 (setq-default indent-tabs-mode nil)	; don't use fucking tabs to indent
 
@@ -365,14 +366,19 @@
 
 ;; Ido
 
+(defconst has-ido emacs22)
+
+(when has-ido
+  (ido-mode t)
+
 ;; tab means tab, i.e. complete. Not "open this file", stupid.
-(setq ido-confirm-unique-completion t)
+  (setq ido-confirm-unique-completion t)
 ;; If the file doesn't exist, do try to invent one from a transplanar
 ;; directory. I just want a new file.
-(setq ido-auto-merge-work-directories-length -1)
+  (setq ido-auto-merge-work-directories-length -1)
 
 ;; Don't switch to GDB-mode buffers
-(add-to-list 'ido-ignore-buffers "locals")
+  (add-to-list 'ido-ignore-buffers "locals"))
 
 ;; BINDINGS
 
@@ -392,7 +398,8 @@
 
 ;; BINDINGS :: ido
 
-(global-set-key [(control b)] 'ido-switch-buffer)
+(when has-ido
+  (global-set-key [(control b)] 'ido-switch-buffer))
 
 ;; BINDINGS :: isearch
 (global-set-key [(control f)] 'isearch-forward-regexp)  ; search regexp
@@ -451,8 +458,6 @@
 ;  ruby-mode-map
 ;  [(control c) (control f)]
 ;  'insert-fixme)                                      ; insert fixme
-
-(require 'php-mode)
 
 ;; BINDINGS :: C/C++
 
@@ -683,18 +688,17 @@
 
 
 
+(when has-ido
+  (custom-set-variables
+   '(ido-auto-merge-work-directories-length -1)
+   '(ido-confirm-unique-completion t)
+   '(ido-create-new-buffer (quote always))
+   '(ido-everywhere t)
+   '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'" "\\`\\*stack frames of.*\\*\\'" "\\`\\*gud\\*\\'" "\\`\\*locals of.*\\*\\'" "\\` ")))
+   '(ido-mode (quote both) nil (ido))))
+
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(after-save-hook (quote (executable-make-buffer-file-executable-if-script-p)))
- '(ido-auto-merge-work-directories-length -1)
- '(ido-confirm-unique-completion t)
- '(ido-create-new-buffer (quote always))
- '(ido-everywhere t)
- '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'" "\\`\\*stack frames of.*\\*\\'" "\\`\\*gud\\*\\'" "\\`\\*locals of.*\\*\\'" "\\` ")))
- '(ido-mode (quote both) nil (ido))
  '(require-final-newline t))
 
 (require 'uniquify)
