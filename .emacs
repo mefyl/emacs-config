@@ -19,6 +19,17 @@
 
 ;; CUSTOM FUNCTIONS
 
+;; Lisp
+
+(defun buffer-empty-p ()
+  (equal (point-min) (point-max)))
+
+;; Reload conf
+
+(defun reload ()
+  (interactive)
+  (load-file "~/.emacs"))
+
 ;; Compilation
 
 (setq compile-command "")
@@ -85,11 +96,17 @@
 (defun cwd ()
   (replace-regexp-in-string "Directory " "" (pwd)))
 
-(defun insert-shell-shebang ()
-  (interactive)
+;; Shebangs
+
+(defun insert-shebang (bin)
+  (interactive "sBin: ")
   (save-excursion
     (goto-char (point-min))
-    (insert "#!/bin/sh\n\n")))
+    (insert "#!" bin "\n\n")))
+
+(defun insert-shebang-if-empty (bin)
+  (when (buffer-empty-p)
+    (insert-shebang bin)))
 
 ;; C/C++
 
@@ -247,9 +264,9 @@
 (setq column-number-mode 't)            ; column number
 (when (display-graphic-p)
   (progn
-    (scroll-bar-mode nil)               ; no scroll bar
-    (menu-bar-mode nil)                 ; no menu bar
-    (tool-bar-mode nil)                 ; no tool bar
+    (scroll-bar-mode -1)                ; no scroll bar
+    (menu-bar-mode -1)                  ; no menu bar
+    (tool-bar-mode -1)                  ; no tool bar
     (mouse-wheel-mode t)))              ; enable mouse wheel
 
 
@@ -289,18 +306,15 @@
 
 (add-hook 'sh-mode-hook
 	  (lambda ()
-	    (when (equal (point-min) (point-max))
-	      (insert-shell-shebang)
-              (goto-char (point-max)))))
+            (insert-shebang-if-empty "/bin/sh")))
+
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+            (insert-shebang-if-empty "/usr/bin/ruby")))
+
 
 ; Start code folding mode in C/C++ mode
 (add-hook 'c-mode-common-hook (lambda () (hs-minor-mode 1)))
-
-;; Ruby
-
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/ruby-mode/")
-(autoload 'ruby-mode "ruby-mode"
- "Mode for editing ruby source files" t)
 
 ;; file extensions
 (add-to-list 'auto-mode-alist '("\\.l$" . c++-mode))
@@ -311,8 +325,7 @@
 (add-to-list 'auto-mode-alist '("\\.xhh$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.pro$" . sh-mode)) ; Qt .pro files
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Drakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Drakefile$" . c++-mode))
 
 ;; Font
 
@@ -362,8 +375,6 @@
     (set-font-size new)
     (message (concat "New font size: " (int-to-string new)))))
 
-(set-font-size)
-
 ;; Ido
 
 (defconst has-ido emacs22)
@@ -380,7 +391,41 @@
 ;; Don't switch to GDB-mode buffers
   (add-to-list 'ido-ignore-buffers "locals"))
 
+;; GNUSERV
+
+(defun gnuserv-remember-frame-client ()
+  (set-frame-parameter () 'gnuclient (current-buffer)))
+
+(defun gnuserv-close-session ()
+  (interactive)
+  (let ((buffer (frame-parameter () 'gnuclient)))
+    (if buffer
+      (gnuserv-kill-client (car (gnuserv-buffer-clients buffer)))
+      (save-buffers-kill-emacs))))
+
+(add-hook 'gnuserv-visit-hook 'configure-frame)
+(add-hook 'gnuserv-visit-hook 'gnuserv-remember-frame-client)
+(gnuserv-start)
+
+;; GNUSERV
+
+(defun gnuserv-remember-frame-client ()
+  (set-frame-parameter () 'gnuclient (current-buffer)))
+
+(defun gnuserv-close-session ()
+  (interactive)
+  (let ((buffer (frame-parameter () 'gnuclient)))
+    (if buffer
+      (gnuserv-kill-client (car (gnuserv-buffer-clients buffer)))
+      (save-buffers-kill-emacs))))
+
+(add-hook 'gnuserv-visit-hook 'configure-frame)
+(add-hook 'gnuserv-visit-hook 'gnuserv-remember-frame-client)
+(gnuserv-start)
+
 ;; BINDINGS
+
+(global-set-key [(control x) (control c)] 'gnuserv-close-session)
 
 ;; BINDINGS :: font
 
@@ -562,15 +607,18 @@
 
 ;; COLORS
 
-(set-background-color "black")
-(set-foreground-color "white")
-(set-cursor-color "Orangered")
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
+(defun configure-frame ()
+  (set-background-color "black")
+  (set-foreground-color "white")
+  (set-cursor-color "Orangered")
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
+  (set-font-size))
+(configure-frame)
 
 ;; Qt
 
@@ -618,10 +666,7 @@
 
 ;; Tuareg mode
 
-;; (load "/usr/share/emacs/site-lisp/tuareg-mode/tuareg.el" t)
-;; (add-to-list 'load-path "/usr/share/doc/tuareg-mode-1.44.3")
-
-
+(require 'tuareg)
 
 ; Use UTF8 in tuareg mode
 
@@ -648,8 +693,8 @@
 
 ;; Sessions
 
-(desktop-load-default)
-(desktop-read)
+;; (desktop-load-default)
+;; (desktop-read)
 
 ;; mmm mode
 
@@ -740,3 +785,11 @@
   (interactive)
   (set-register ?% (car winconf-ring))
   (jump-to-register ?%))
+
+;; Local conf files
+(defun may-load (path)
+  (when (file-readable-p path)
+    (load-file path)))
+
+(may-load "~/.emacs.local")
+(may-load "~/.emacs.site")
