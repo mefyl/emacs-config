@@ -394,34 +394,7 @@
 
 ;; GNUSERV
 
-(defun gnuserv-remember-frame-client ()
-  (set-frame-parameter () 'gnuclient (current-buffer)))
-
-(defun gnuserv-close-session ()
-  (interactive)
-  (let ((buffer (frame-parameter () 'gnuclient)))
-    (if buffer
-      (gnuserv-kill-client (car (gnuserv-buffer-clients buffer)))
-      (save-buffers-kill-emacs))))
-
 (add-hook 'gnuserv-visit-hook 'configure-frame)
-(add-hook 'gnuserv-visit-hook 'gnuserv-remember-frame-client)
-(gnuserv-start)
-
-;; GNUSERV
-
-(defun gnuserv-remember-frame-client ()
-  (set-frame-parameter () 'gnuclient (current-buffer)))
-
-(defun gnuserv-close-session ()
-  (interactive)
-  (let ((buffer (frame-parameter () 'gnuclient)))
-    (if buffer
-      (gnuserv-kill-client (car (gnuserv-buffer-clients buffer)))
-      (save-buffers-kill-emacs))))
-
-(add-hook 'gnuserv-visit-hook 'configure-frame)
-(add-hook 'gnuserv-visit-hook 'gnuserv-remember-frame-client)
 (gnuserv-start)
 
 ;; BINDINGS
