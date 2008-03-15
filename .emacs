@@ -326,6 +326,7 @@
 (add-to-list 'auto-mode-alist '("\\.pro$" . sh-mode)) ; Qt .pro files
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
 (add-to-list 'auto-mode-alist '("Drakefile$" . c++-mode))
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
 
 ;; Font
 
