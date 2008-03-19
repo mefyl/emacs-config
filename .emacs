@@ -17,6 +17,12 @@
 
 (may-load "~/.emacs.site")
 
+(defconst has-gnuserv
+  (fboundp 'gnuserv-start)
+  "Whether gnuserv is available")
+
+;; Version detection
+
 (defconst xemacs (string-match "XEmacs" emacs-version)
   "non-nil iff XEmacs, nil otherwise")
 
@@ -400,12 +406,13 @@
 
 ;; GNUSERV
 
-(add-hook 'gnuserv-visit-hook 'configure-frame)
-(gnuserv-start)
+(when has-gnuserv
+  (gnuserv-start)
+;  (global-set-key [(control x) (control c)] 'gnuserv-close-session)
+  (add-hook 'gnuserv-visit-hook 'configure-frame)
+  )
 
 ;; BINDINGS
-
-(global-set-key [(control x) (control c)] 'gnuserv-close-session)
 
 ;; BINDINGS :: font
 
