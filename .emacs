@@ -11,6 +11,12 @@
 ;;
 ;;
 
+(defun may-load (path)
+  (when (file-readable-p path)
+    (load-file path)))
+
+(may-load "~/.emacs.site")
+
 (defconst xemacs (string-match "XEmacs" emacs-version)
   "non-nil iff XEmacs, nil otherwise")
 
@@ -760,10 +766,4 @@
   (set-register ?% (car winconf-ring))
   (jump-to-register ?%))
 
-;; Local conf files
-(defun may-load (path)
-  (when (file-readable-p path)
-    (load-file path)))
-
 (may-load "~/.emacs.local")
-(may-load "~/.emacs.site")
