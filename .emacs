@@ -740,6 +740,11 @@
 
 (setq-default gdb-many-windows t)
 
+;; Recognize test suite output
+
+(add-to-list 'compilation-error-regexp-alist '("^\\(PASS\\|SKIP\\|XFAIL\\|TFAIL\\): \\(.*\\)$" 2 () () 0 2))
+(add-to-list 'compilation-error-regexp-alist '("^\\(FAIL\\|XPASS\\): \\(.*\\)$" 2 () () 2 2))
+
 ;(require 'flymake)
 ;(add-hook 'find-file-hooks 'flymake-find-file-hook)
 
