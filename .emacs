@@ -658,35 +658,7 @@
   (when (eq (car args) ?)
     (setcar args ?\n)))
 
-;; Tuareg mode
 
-; Use UTF8 in tuareg mode
-
-;; (add-hook 'tuareg-interactive-mode-hook
-;; 	  (lambda ()
-;;            (prefer-coding-system 'utf-8)
-;;             ))
-
-;; (prefer-coding-system 'utf-8)
-
-
-;; (setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
-
-;; BINDINGS :: tuareg
-
-(defun tuareg-mode-setup ()
-  ; comment
-  (define-key
-    tuareg-mode-map
-    [(control c) (control c)]
-    'comment-region)
-  ; insert fixme
-  (define-key
-    tuareg-mode-map
-    [(control c) (control f)]
-    'insert-fixme))
-
-(add-hook 'tuareg-load-hook 'tuareg-mode-setup)
 
 ;; Sessions
 
