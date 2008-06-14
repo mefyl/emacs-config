@@ -653,8 +653,6 @@
 
 ;; Tuareg mode
 
-(require 'tuareg)
-
 ; Use UTF8 in tuareg mode
 
 ;; (add-hook 'tuareg-interactive-mode-hook
@@ -669,14 +667,19 @@
 
 ;; BINDINGS :: tuareg
 
-;; (define-key
-;;   tuareg-mode-map
-;;   [(control c) (control c)]
-;;   'comment-region)                                      ; comment
-;; (define-key
-;;   tuareg-mode-map
-;;   [(control c) (control f)]
-;;   'insert-fixme)                                      ; insert fixme
+(defun tuareg-mode-setup ()
+  ; comment
+  (define-key
+    tuareg-mode-map
+    [(control c) (control c)]
+    'comment-region)
+  ; insert fixme
+  (define-key
+    tuareg-mode-map
+    [(control c) (control f)]
+    'insert-fixme))
+
+(add-hook 'tuareg-load-hook 'tuareg-mode-setup)
 
 ;; Sessions
 
