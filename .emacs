@@ -7,15 +7,22 @@
 ;; Thanks go to Micha <micha@lrde.epita.fr> for his help
 ;;
 
-;; TODO
-;;
-;;
-
 (defun may-load (path)
+  "Load a file iff it exists."
   (when (file-readable-p path)
     (load-file path)))
 
+;; Load local distribution configuration file
 (may-load "~/.emacs.site")
+;; Load personal std library extension
+(may-load "~/.elisp.el")
+
+;; Load every .el file in conf dir
+(defconst conf-dir "~/.emacs.conf/"
+  "Location of the configuration files")
+(mapcar (lambda (file) (load-file (concat conf-dir file)))
+        (filter (lambda (path) (string-match ".el$" path))
+                (directory-files conf-dir)))
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
