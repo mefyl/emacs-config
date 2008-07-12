@@ -174,13 +174,13 @@
 (defun rend ()
   (max (point) (mark)))
 
-;; Generic FIXME insertion method. Works as soon as the mode posseses
+;; Generic FIXME insertion method. Works as long as the mode possesses
 ;; a comment-region function.
 (defun insert-fixme (&optional msg)
   (interactive "sFixme: ")
   (save-excursion
     (end-of-line)
-    (when (not (looking-back "^\\s*"))
+    (when (not (looking-back "^\\s *"))
       (insert " "))
     (setq start (point))
     (insert "FIXME")
