@@ -129,6 +129,18 @@
 
 ;; C/C++
 
+;; Comment boxing
+
+(defun my-rebox-comment (style)
+  (interactive "P")
+  (if style
+      (let ((rebox-default-style 223)) (rebox-comment nil))
+      (rebox-comment nil)))
+
+(defun setup-c-rebox ()
+  (local-set-key "\M-q" 'my-rebox-comment))
+(add-hook 'c++-mode-hook 'setup-c-rebox)
+
 (defun insert-header-guard ()
   (interactive)
   (save-excursion
