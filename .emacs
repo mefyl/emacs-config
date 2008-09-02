@@ -186,8 +186,8 @@
 (defun rend ()
   (max (point) (mark)))
 
-;; Generic FIXME insertion method. Works as long as the mode possesses
-;; a comment-region function.
+;; Generic FIXME insertion method. Works as long as the mode has a
+;; comment-region function.
 (defun insert-fixme (&optional msg)
   (interactive "sFixme: ")
   (save-excursion
@@ -200,8 +200,24 @@
       (insert ": " msg))
   (comment-region start (point))))
 
+(defvar c-include-path
+  ())
+
+(defun c-add-include-path (path)
+  (interactive "DDirectory: \n")
+  (add-to-list 'c-include-path path))
+
+(defun c-simplify-include (path paths)
+  (if paths
+    (let ((rg (concat "^" (car paths))))
+      (if (string-match rg path)
+        (replace-regexp-in-string rg "" path)
+        (c-simplify-include path (cdr paths))))
+    path))
+
 (defun c-insert-include (name &optional r)
-  (interactive "sInclude: \nP")
+  (interactive "fInclude: \nP")
+
   (save-excursion
     (beginning-of-line)
     (when (not (looking-at "\\W*$"))
@@ -212,7 +228,7 @@
         (insert "<>")
       (insert "\"\""))
     (backward-char 1)
-    (insert name)))
+    (insert (c-simplify-include name c-include-path))))
 
 (defun c-insert-debug (&optional msg)
   (interactive)
