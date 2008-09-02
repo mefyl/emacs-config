@@ -606,21 +606,10 @@
 ;;   [C-return]
 ;;   'xref-completion)                                     ; complete
 
-;; BINDINGS :: sgml
-
-(require 'sgml-mode)
-
-(define-key
-  html-mode-map
-  [(control c) (control c)]
-  'comment-region)
-
 ;; BINDINGS :: misc
 
 (global-set-key [(meta =)]
                 'stat-region)
-(global-set-key [(control c) (control c)]
-                'comment-region)
 (if (display-graphic-p)
     (global-set-key [(control z)] 'undo)                ; undo only in graphic mode
 )
