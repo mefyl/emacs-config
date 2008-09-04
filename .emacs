@@ -22,6 +22,7 @@
 (require 'my-autoload)
 (require 'my-c-mode)
 (require 'my-elisp)
+(require 'my-lisp-mode)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
