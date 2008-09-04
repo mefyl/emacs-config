@@ -88,17 +88,30 @@
       (insert name)
       (insert ">")))
 
+  ;; ------------- ;;
+  ;; Configuration ;;
+  ;; ------------- ;;
+
+  ;; Rebox with C-style comments
+  (set 'my-rebox-style 223)
+
   ;; -------- ;;
   ;; Bindings ;;
   ;; -------- ;;
 
   ;; Insert inclusion
-
   (define-key
     c-mode-base-map
     [(control c) (control i)]
     'c-insert-include-bouncer)
 
+  ;; Rebox comment
+  (define-key
+    c-mode-base-map
+    [(meta q)]
+    'my-rebox-comment)
 )
 
 (add-hook 'c++-mode-hook 'c-mode-setup)
+
+(provide 'my-c-mode)

@@ -17,13 +17,12 @@
 ;; Load personal std library extension
 (may-load "~/.elisp.el")
 
-;; Load every .el file in conf dir
 (defconst conf-dir "/home/mefyl/.emacs.conf/"
   "Location of the configuration files")
 (add-to-list 'load-path conf-dir)
-(mapcar (lambda (file) (load-file (concat conf-dir file)))
-        (filter (lambda (path) (string-match ".el$" path))
-                (directory-files conf-dir)))
+
+(require 'my-autoload)
+(require 'my-c-mode)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
@@ -131,16 +130,6 @@
 ;; C/C++
 
 ;; Comment boxing
-
-(defun my-rebox-comment (style)
-  (interactive "P")
-  (if style
-      (let ((rebox-default-style 223)) (rebox-comment nil))
-      (rebox-comment nil)))
-
-(defun setup-c-rebox ()
-  (local-set-key "\M-q" 'my-rebox-comment))
-(add-hook 'c++-mode-hook 'setup-c-rebox)
 
 (defun insert-header-guard ()
   (interactive)
