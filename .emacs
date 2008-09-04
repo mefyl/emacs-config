@@ -18,8 +18,9 @@
 (may-load "~/.elisp.el")
 
 ;; Load every .el file in conf dir
-(defconst conf-dir "~/.emacs.conf/"
+(defconst conf-dir "/home/mefyl/.emacs.conf/"
   "Location of the configuration files")
+(add-to-list 'load-path conf-dir)
 (mapcar (lambda (file) (load-file (concat conf-dir file)))
         (filter (lambda (path) (string-match ".el$" path))
                 (directory-files conf-dir)))
@@ -199,52 +200,6 @@
     (when (not (string-equal msg ""))
       (insert ": " msg))
   (comment-region start (point))))
-
-(defvar c-include-path
-  ())
-
-(defun c-preproc-indent-level (pos)
-  (interactive "d")
-  (save-excursion
-    (beginning-of-buffer)
-    (let ((res 0))
-      (while (< (point) pos)
-        (when (looking-at "#\\s-*if")
-          (setq res (+ res 1)))
-        (when (looking-at "#\\s-*endif")
-          (setq res (- res 1)))
-        (forward-line))
-      res
-      )))
-
-(defun c-add-include-path (path)
-  (interactive "DDirectory: \n")
-  (add-to-list 'c-include-path path))
-
-(defun c-simplify-include (path paths)
-  (if paths
-    (let ((rg (concat "^" (car paths))))
-      (if (string-match rg path)
-        (replace-regexp-in-string rg "" path)
-        (c-simplify-include path (cdr paths))))
-    path))
-
-(defun c-insert-include (name &optional r)
-  (interactive "fInclude: \nP")
-
-  (save-excursion
-    (beginning-of-line)
-    (when (not (looking-at "\\W*$"))
-      (insert "\n")
-      (line-move -1))
-    (insert "#")
-    (insert (make-string (c-preproc-indent-level (point)) " "))
-    (insert "include ")
-    (if r
-        (insert "<>")
-      (insert "\"\""))
-    (backward-char 1)
-    (insert (c-simplify-include name c-include-path))))
 
 (defun c-insert-debug (&optional msg)
   (interactive)
@@ -586,10 +541,6 @@
   c-mode-base-map
   [(control c) (control l)]
   'c-insert-class)                                      ; insert class
-(define-key
-  c-mode-base-map
-  [(control c) (control i)]
-  'c-insert-include)                                    ; insert include
 
 ;; ;; BINDINGS :: C/C++ :: XRefactory
 
