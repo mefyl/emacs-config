@@ -14,8 +14,6 @@
 
 ;; Load local distribution configuration file
 (may-load "~/.emacs.site")
-;; Load personal std library extension
-(may-load "~/.elisp.el")
 
 (defconst conf-dir "/home/mefyl/.emacs.conf/"
   "Location of the configuration files")
@@ -23,6 +21,7 @@
 
 (require 'my-autoload)
 (require 'my-c-mode)
+(require 'my-elisp)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
