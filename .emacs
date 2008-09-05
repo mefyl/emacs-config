@@ -22,6 +22,7 @@
 (require 'my-autoload)
 (require 'my-c-mode)
 (require 'my-elisp)
+(require 'my-font)
 (require 'my-lisp-mode)
 
 (defconst has-gnuserv
@@ -305,54 +306,6 @@
 (add-to-list 'auto-mode-alist '("Drakefile$" . c++-mode))
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
 
-;; Font
-
-(defconst default-font-size 105)
-
-(defun set-font-size (&optional size)
-  "Set the font size to SIZE (default: default-font-size)."
-  (interactive "nSize: ")
-  (unless size
-    (setq size default-font-size))
-  (set-face-attribute 'default nil :height size))
-
-(set-face-attribute 'default nil :height 100)
-
-(defun reset-font-size ()
-  (interactive)
-  (set-font-size))
-
-(defun find-next (c l)
-    (if (< c (car l))
-        (car l)
-      (if (cdr l)
-          (find-next c (cdr l))
-        (car l))))
-
-(defun find-prev (c l &optional ac)
-    (if (or (not l) (<= c (car l)))
-        (if ac
-            ac
-          (car l))
-      (find-prev c (cdr l) (car l))))
-
-(defun current-font-size ()
-  (face-attribute 'default :height))
-
-(defconst font-sizes '(60 75 90 105 120 135 170 280))
-
-(defun inc-font-size ()
-  (interactive)
-  (let ((new (find-next (current-font-size) font-sizes)))
-    (set-font-size new)
-    (message (concat "New font size: " (int-to-string new)))))
-
-(defun dec-font-size ()
-  (interactive)
-  (let ((new (find-prev (current-font-size) font-sizes ())))
-    (set-font-size new)
-    (message (concat "New font size: " (int-to-string new)))))
-
 ;; Ido
 
 (defconst has-ido emacs22)
@@ -378,12 +331,6 @@
   )
 
 ;; BINDINGS
-
-;; BINDINGS :: font
-
-(global-set-key [(control +)] 'inc-font-size)
-(global-set-key [(control -)] 'dec-font-size)
-(global-set-key [(control =)] 'reset-font-size)
 
 ;; BINDINGS :: windows
 
