@@ -160,20 +160,6 @@
     (save-buffer)
     (compile (concat "g++ -W -Wall -I /usr/include/qt4/ -I /usr/include/qt4/QtCore/ -L /usr/lib/qt4 -lQtCore " file " && ./a.out"))))
 
-;; Generic FIXME insertion method. Works as long as the mode has a
-;; comment-region function.
-(defun insert-fixme (&optional msg)
-  (interactive "sFixme: ")
-  (save-excursion
-    (end-of-line)
-    (when (not (looking-back "^\\s *"))
-      (insert " "))
-    (setq start (point))
-    (insert "FIXME")
-    (when (not (string-equal msg ""))
-      (insert ": " msg))
-  (comment-region start (point))))
-
 (defun c-insert-debug (&optional msg)
   (interactive)
   (when (not (looking-at "\\W*$"))
