@@ -38,11 +38,6 @@
 
 ;; CUSTOM FUNCTIONS
 
-;; Lisp
-
-(defun buffer-empty-p ()
-  (equal (point-min) (point-max)))
-
 ;; Reload conf
 
 (defun reload ()
@@ -110,11 +105,6 @@
 		     shell-command-default-error-buffer))
   (shell-command (concat "ruby -e '" cmd "'") output-buffer error-buffer))
 
-;; Shell
-
-(defun cwd ()
-  (replace-regexp-in-string "Directory " "" (pwd)))
-
 ;; Shebangs
 
 (defun insert-shebang (bin)
@@ -169,12 +159,6 @@
     (line-move -2)
     (save-buffer)
     (compile (concat "g++ -W -Wall -I /usr/include/qt4/ -I /usr/include/qt4/QtCore/ -L /usr/lib/qt4 -lQtCore " file " && ./a.out"))))
-
-(defun rbegin ()
-  (min (point) (mark)))
-
-(defun rend ()
-  (max (point) (mark)))
 
 ;; Generic FIXME insertion method. Works as long as the mode has a
 ;; comment-region function.
