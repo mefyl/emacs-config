@@ -24,6 +24,7 @@
 (require 'my-elisp)
 (require 'my-font)
 (require 'my-lisp-mode)
+(require 'my-python-mode)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
