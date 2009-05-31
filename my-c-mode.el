@@ -31,7 +31,8 @@
 
   (defun c-add-include-path (path)
     (interactive "DDirectory: \n")
-    (add-to-list 'c-include-path path))
+    (add-to-list 'c-include-path path)
+		(set 'c-macro-cppflags (concat c-macro-cppflags " -I'" path "'")))
 
   (defun c-make-include (path paths)
     (if paths
