@@ -48,6 +48,9 @@
 
 ;; Compilation
 
+(defvar cpu-number 1
+  "Number of parallel processing units on this system")
+
 (setq compile-command "")
 
 (defun build ()
@@ -59,8 +62,8 @@
       (if (string-equal (cwd) "/")
         (message "No Makefile found.")
           (if (file-readable-p "Makefile")
-            (compile (concat "cd " (cwd) " && make"))
-            (compile (concat "cd " (cwd) " && make -C _build")))))
+            (compile (concat "cd " (cwd) " && make -j " (int-to-string cpu-number)))
+            (compile (concat "cd " (cwd) " && make -C _build -j " (int-to-string cpu-number))))))
     (recompile)))
 
 ;; Edition
@@ -533,7 +536,7 @@
                                    (substatement-open    . 0)
                                    (case-label           . +)
                                    (access-label         . -)
-                                   (inclass              . ++)
+                                   (inclass              . +)
                                    (inline-open          . 0)))))
 
 (setq c-default-style "epita")
