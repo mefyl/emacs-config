@@ -39,7 +39,7 @@
         (let ((rg (concat "^" (car paths))))
           (if (string-match rg path)
               (concat "<" (replace-regexp-in-string rg "" path) ">")
-            (c-simplify-include path (cdr paths))))
+            (c-make-include path (cdr paths))))
       (let ((file (current-file-name)))
         (concat "\""
                 (if file
