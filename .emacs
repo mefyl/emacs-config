@@ -277,10 +277,6 @@
 	    (when (and (memq major-mode '(c-mode c++-mode)) (equal (point-min) (point-max)) (string-match ".*\\.cc?" (buffer-file-name)))
 	      (insert-header-inclusion))))
 
-(add-hook 'sh-mode-hook
-	  (lambda ()
-            (insert-shebang-if-empty "/bin/sh")))
-
 (add-hook 'ruby-mode-hook
 	  (lambda ()
             (insert-shebang-if-empty "/usr/bin/ruby")))

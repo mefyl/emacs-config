@@ -1,4 +1,8 @@
 (defun sh-mode-setup ()
+
+  ;; Insert shebang
+  (insert-shebang-if-empty "/bin/sh")
+
   ;; -------- ;;
   ;; Bindings ;;
   ;; -------- ;;
