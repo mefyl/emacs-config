@@ -299,7 +299,7 @@
 
 ;; Ido
 
-(defconst has-ido (> emacs-major 22))
+(defconst has-ido (>= emacs-major 22))
 
 (when has-ido
   (ido-mode t)
