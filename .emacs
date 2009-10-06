@@ -38,8 +38,8 @@
 (defconst xemacs (string-match "XEmacs" emacs-version)
   "non-nil iff XEmacs, nil otherwise")
 
-(defconst emacs22 (string-match "^22." emacs-version)
-  "non-nil iff Emacs 22, nil otherwise")
+(defconst emacs-major (string-to-int (replace-regexp-in-string "\\..*" "" emacs-version))
+  "Emacs major version")
 
 ;; CUSTOM FUNCTIONS
 
@@ -315,7 +315,7 @@
 
 ;; Ido
 
-(defconst has-ido emacs22)
+(defconst has-ido (> emacs-major 22))
 
 (when has-ido
   (ido-mode t)
