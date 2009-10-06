@@ -26,6 +26,9 @@
 (require 'my-lisp-mode)
 (require 'my-python-mode)
 
+;; Modes setup
+(add-hook 'sh-mode-hook 'sh-mode-setup)
+
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
   "Whether gnuserv is available")
