@@ -15,7 +15,7 @@
 ;; Load local distribution configuration file
 (may-load "~/.emacs.site")
 
-(defconst conf-dir "/home/mefyl/.emacs.conf/"
+(defconst conf-dir (concat (getenv "HOME") "/.emacs.conf/")
   "Location of the configuration files")
 (add-to-list 'load-path conf-dir)
 
