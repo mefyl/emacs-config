@@ -113,6 +113,4 @@
     'my-rebox-comment)
 )
 
-(add-hook 'c++-mode-hook 'c-mode-setup)
-
 (provide 'my-c-mode)

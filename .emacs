@@ -20,7 +20,6 @@
 (add-to-list 'load-path conf-dir)
 
 (require 'my-autoload)
-(require 'my-c-mode)
 (require 'my-elisp)
 (require 'my-font)
 (require 'my-lisp-mode)
@@ -28,6 +27,7 @@
 
 ;; Modes setup
 (add-hook 'sh-mode-hook 'sh-mode-setup)
+(add-hook 'c++-mode-hook 'c-mode-setup)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
