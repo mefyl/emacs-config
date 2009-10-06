@@ -18,6 +18,7 @@
   "my-c-mode" "Customize C mode" t)
 
 (autoloads (list (list 'insert-shebang "Insert shebang." t)
+                 (list 'insert-shebang-if-absent "Insert shebang unless there's already one" ())
                  (list 'insert-shebang-if-empty "Insert shebang if the buffer is empty" ()))
            "my-shebang")
 
