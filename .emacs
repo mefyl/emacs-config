@@ -113,18 +113,6 @@
 		     shell-command-default-error-buffer))
   (shell-command (concat "ruby -e '" cmd "'") output-buffer error-buffer))
 
-;; Shebangs
-
-(defun insert-shebang (bin)
-  (interactive "sBin: ")
-  (save-excursion
-    (goto-char (point-min))
-    (insert "#!" bin "\n\n")))
-
-(defun insert-shebang-if-empty (bin)
-  (when (buffer-empty-p)
-    (insert-shebang bin)))
-
 ;; C/C++
 
 ;; Comment boxing
