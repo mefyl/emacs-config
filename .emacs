@@ -58,16 +58,18 @@
 
 (defun build ()
   (interactive)
-  (if (string-equal compile-command "")
-    (progn
-      (while (not (or (file-readable-p "Makefile") (file-readable-p "_build") (string-equal (cwd) "/")))
-        (cd ".."))
-      (if (string-equal (cwd) "/")
-        (message "No Makefile found.")
-          (if (file-readable-p "Makefile")
-            (compile (concat "cd " (cwd) " && make -j " (int-to-string cpu-number)))
-            (compile (concat "cd " (cwd) " && make -C _build -j " (int-to-string cpu-number))))))
-    (recompile)))
+	(if (string-equal compile-command "")
+		(let ((path (cwd)))
+			(while (not (or (file-readable-p (concat path "/Makefile")) (string-equal path "")))
+				(message path)
+				(setq path (replace-regexp-in-string "/[^/]*\\'" "" path)))
+			(message path)
+			(if (string-equal path "")
+				(message "No Makefile found.")
+				(progn
+					(setq path (replace-regexp-in-string " " "\\\\ " path))
+					(compile (concat "make -C " path)))))
+		(recompile)))
 
 ;; Edition
 
