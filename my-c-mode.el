@@ -96,9 +96,69 @@
   ;; Rebox with C-style comments
   (set 'my-rebox-style 223)
 
+	;; --- ;;
+	;; GDB ;;
+	;; --- ;;
+
+	(defvar my-gdb-program "")
+
+	(defun my-gdb-find-program (path)
+		(interactive "f")
+		(setq my-gdb-program path))
+
+	(defun my-gdb ()
+		(interactive)
+		(window-configuration-to-register :c)
+		(when (string-equal my-gdb-program "")
+			(call-interactively (function my-gdb-find-program)))
+		(set 'my-gdb-status t)
+		(gdb (concat "gdb --annotate=3 " my-gdb-program))
+		(gud-call "set confirm off"))
+
+	(defconst my-gdb-status nil)
+
+	(defun my-gdb-switch ()
+		(interactive)
+		(if my-gdb-status
+			(progn
+				(message "Close debugger view")
+				(window-configuration-to-register :d)
+				(set 'my-gdb-status nil)
+				(jump-to-register :c))
+			(progn
+				(message "Open debugger view")
+				(window-configuration-to-register :c)
+				(set 'my-gdb-status t)
+				(jump-to-register :d))
+			)
+		)
+
+	(defun my-gdb-run ()
+		(interactive)
+		(gud-call "run"))
+
+	(defun my-gdb-stop ()
+		(interactive)
+		(gud-stop-subjob))
+
+	(defun my-gdb-kill ()
+		(interactive)
+		(my-gdb-stop)
+		(gud-call "kill"))
+
+	(defun c-window-layout ()
+		(interactive)
+		(window-set-width 80))
+
   ;; -------- ;;
   ;; Bindings ;;
   ;; -------- ;;
+
+;;   ;; Lay window out
+;;   (define-key
+;;     c-mode-base-map
+;;     [(meta l)]
+;;     'c-window-layout)
 
   ;; Insert inclusion
   (define-key
@@ -111,6 +171,35 @@
     c-mode-base-map
     [(meta q)]
     'my-rebox-comment)
+
+	;; Switch debugger
+  (global-set-key
+    [(control c) (d)]
+    'my-gdb-switch)
+
+	;; Show debugger
+  (define-key
+    c-mode-base-map
+    [(control c) (g)]
+    'my-gdb)
+
+	;; Run program
+  (define-key
+    c-mode-base-map
+    [(control c) (r)]
+    'my-gdb-run)
+
+	;; Stop program
+  (define-key
+    c-mode-base-map
+    [(control c) (s)]
+    'my-gdb-stop)
+
+	;; Kill program
+  (define-key
+    c-mode-base-map
+    [(control c) (k)]
+    'my-gdb-kill)
 )
 
 (provide 'my-c-mode)
