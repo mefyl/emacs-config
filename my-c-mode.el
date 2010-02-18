@@ -99,6 +99,7 @@
 ;; --- ;;
 
 (defvar my-gdb-program "")
+(defvar my-gdb-args '())
 
 (defun my-gdb-find-program (path)
 	(interactive "f")
@@ -110,7 +111,7 @@
 	(when (string-equal my-gdb-program "")
 		(call-interactively (function my-gdb-find-program)))
 	(set 'my-gdb-status t)
-	(gdb (concat "gdb --annotate=3 " my-gdb-program))
+	(gdb (concat "gdb --annotate=3 --args " my-gdb-program (apply (function concat) (mapcar (lambda (x) (format " %s" x)) my-gdb-args))))
 	(gud-call "set confirm off"))
 
 (defconst my-gdb-status nil)
