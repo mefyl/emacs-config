@@ -92,7 +92,8 @@
 ;; ------------- ;;
 
 ;; Rebox with C-style comments
-(set 'my-rebox-style 223)
+(defun c++-mode-setup ()
+  (set 'my-rebox-style 223))
 
 ;; --- ;;
 ;; GDB ;;

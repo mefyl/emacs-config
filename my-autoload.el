@@ -14,6 +14,9 @@
 (autoload 'sh-mode-setup
   "my-sh-mode" "Customize shell mode" t)
 
+(autoload 'c++-mode-setup
+  "my-c-mode" "Configure c++ mode configuration" t)
+
 (autoload 'c++-project
   "my-c-project" "Define C++ project configuration" t)
 

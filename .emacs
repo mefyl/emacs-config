@@ -27,7 +27,7 @@
 
 ;; Modes setup
 (add-hook 'sh-mode-hook 'sh-mode-setup)
-(add-hook 'c++-mode-hook (lambda () (require 'my-c-mode)))
+(add-hook 'c++-mode-hook 'c++-mode-setup)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
