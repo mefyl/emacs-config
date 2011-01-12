@@ -597,6 +597,7 @@
 (custom-set-variables
  '(after-save-hook (quote (executable-make-buffer-file-executable-if-script-p)))
  '(require-final-newline t))
+ '(gdb-max-frames 1024)
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
