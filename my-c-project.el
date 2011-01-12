@@ -10,7 +10,7 @@
     ;; Include path
     (require 'my-c-mode)
     (require 'cmacexp)
-    (mapcar (lambda (p) (c-add-include-path p)) incpath)
+    (mapcar (lambda (p) (c-add-include-path (path p))) incpath)
 
     ;; Program to debug
     (setq my-gdb-program (path (concat buildpath "/" binary)))
