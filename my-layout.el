@@ -1,3 +1,4 @@
+;;;###autoload
 (defun window-set-width (&optional width)
   (interactive "P")
   (let ((width (or width 80)))

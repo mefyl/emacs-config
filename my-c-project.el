@@ -1,3 +1,4 @@
+;;;###autoload
 (defun c++-project (sources incpath buildpath buildcmd binary args)
   (let ((root (file-name-directory load-file-name)))
     ;; Helper

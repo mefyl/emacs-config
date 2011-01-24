@@ -1,3 +1,4 @@
+;;;###autoload
 (defun sh-mode-setup ()
 
   ;; Insert shebang

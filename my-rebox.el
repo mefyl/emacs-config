@@ -4,6 +4,7 @@
 
 (make-variable-buffer-local 'my-rebox-style)
 
+;;;###autoload
 (defun my-rebox-comment (style)
   (interactive "P")
   (if style

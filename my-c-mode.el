@@ -92,6 +92,7 @@
 ;; ------------- ;;
 
 ;; Rebox with C-style comments
+;;;###autoload
 (defun c++-mode-setup ()
   (set 'my-rebox-style 223))
 

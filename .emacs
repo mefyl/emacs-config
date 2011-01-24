@@ -19,6 +19,7 @@
   "Location of the configuration files")
 (add-to-list 'load-path conf-dir)
 
+(set 'generated-autoload-file (concat conf-dir "my-autoload.el"))
 (require 'my-autoload)
 (require 'my-elisp)
 (require 'my-font)

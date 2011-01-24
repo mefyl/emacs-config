@@ -1,3 +1,4 @@
+;;;###autoload
 (defun insert-fixme (&optional msg)
   (interactive "sFixme: ")
   (save-excursion
