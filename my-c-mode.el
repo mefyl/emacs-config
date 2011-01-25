@@ -66,7 +66,7 @@
 
 ;; Preprocessor: Include
 
-(defun c-insert-include-bouncer (std)
+(defun c-insert-include (std)
 	(interactive "P")
 	(if std
       (call-interactively 'c-insert-standard-include)
@@ -179,7 +179,7 @@
 (define-key
 	c-mode-base-map
 	[(control c) (control i)]
-	'c-insert-include-bouncer)
+	'c-insert-include)
 
 ;; Rebox comment
 (define-key
