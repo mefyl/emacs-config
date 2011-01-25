@@ -137,17 +137,6 @@
           (goto-char (point-max))
           (insert "\n#endif\n")))))
 
-(defun insert-header-inclusion ()
-  (interactive)
-  (when (buffer-file-name)
-    (let
-        ((name
-          (replace-regexp-in-string ".c$" ".h"
-            (replace-regexp-in-string ".cc$" ".hh"
-              (file-name-nondirectory buffer-file-name)))))
-      (insert "#include \"" name "\"\n\n"))))
-
-
 (defun sandbox ()
   "Opens a C++ sandbox in current window."
   (interactive)
@@ -275,10 +264,6 @@
 	      (insert-header-guard)
 	      (goto-line 3)
 	      (insert "\n"))))
-(add-hook 'find-file-hooks
-	  (lambda ()
-	    (when (and (memq major-mode '(c-mode c++-mode)) (equal (point-min) (point-max)) (string-match ".*\\.cc?" (buffer-file-name)))
-	      (insert-header-inclusion))))
 
 (add-hook 'ruby-mode-hook
 	  (lambda ()

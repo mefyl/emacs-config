@@ -87,6 +87,20 @@
 		(insert name)
 		(insert ">")))
 
+;; -------------------- ;;
+;; Automatic insertions ;;
+;; -------------------- ;;
+
+(defun c-hook-insert-header-inclusion ()
+  (interactive)
+  (when (and (memq major-mode '(c-mode c++-mode)) (equal (point-min) (point-max)) (string-match ".*\\.cc?" (buffer-file-name)))
+    (let ((name (replace-regexp-in-string ".c$" ".h"
+            (replace-regexp-in-string ".cc$" ".hh" (buffer-file-name)))))
+      (message "in there: %s" name)
+      (c-insert-local-include name))))
+
+(add-hook 'find-file-hooks (function c-hook-insert-header-inclusion))
+
 ;; ------------- ;;
 ;; Configuration ;;
 ;; ------------- ;;
