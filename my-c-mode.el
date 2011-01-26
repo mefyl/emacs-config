@@ -1,4 +1,5 @@
 (require 'my-elisp)
+(require 'cmacexp)
 
 ;; ------------ ;;
 ;; Preprocessor ;;
