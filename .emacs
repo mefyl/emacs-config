@@ -322,7 +322,8 @@
 ;; BINDINGS :: ido
 
 (when has-ido
-  (global-set-key [(control b)] 'ido-switch-buffer))
+  (global-set-key [(control b)] 'ido-switch-buffer)
+  (define-key ido-file-completion-map [(control d)] 'ido-make-directory))
 
 ;; BINDINGS :: isearch
 (global-set-key [(control f)] 'isearch-forward-regexp)  ; search regexp
