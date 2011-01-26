@@ -306,7 +306,6 @@
 (when has-gnuserv
   (gnuserv-start)
 ;  (global-set-key [(control x) (control c)] 'gnuserv-close-session)
-  (add-hook 'gnuserv-visit-hook 'configure-frame)
   )
 
 ;; BINDINGS
@@ -483,6 +482,8 @@
    )
   (set-font-size))
 (configure-frame)
+(add-to-list 'after-make-frame-functions
+             (lambda (f) (select-frame f) (configure-frame)))
 
 ;; Qt
 
