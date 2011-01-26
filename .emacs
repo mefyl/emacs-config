@@ -116,6 +116,16 @@
 		     shell-command-default-error-buffer))
   (shell-command (concat "ruby -e '" cmd "'") output-buffer error-buffer))
 
+(defun python-command (cmd &optional output-buffer error-buffer)
+  "Like shell-command, but using python."
+  (interactive (list (read-from-minibuffer "Python command: "
+					   nil nil nil 'python-command-history)
+		     current-prefix-arg
+		     shell-command-default-error-buffer))
+  (shell-command
+   (concat "python -c '" (replace-regexp-in-string "'" "'\\\\''" cmd) "'")
+   output-buffer error-buffer))
+
 ;; C/C++
 
 ;; Comment boxing
@@ -466,7 +476,7 @@
                    (other-window -1)))                  ; Ctrl-Shift-Tab = Previous buffer
 (global-set-key [(control delete)]
                 'kill-word)                             ; kill word forward
-(global-set-key [(meta ~)] 'ruby-command)               ; run ruby command
+(global-set-key [(meta ~)] 'python-command)             ; run python command
 
 ;; COLORS
 
