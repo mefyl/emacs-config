@@ -512,7 +512,7 @@
                                    (substatement-open    . 0)
                                    (case-label           . +)
                                    (access-label         . -)
-                                   (inclass              . +)
+                                   (inclass              . ++)
                                    (inline-open          . 0)))))
 
 (setq c-default-style "epita")
