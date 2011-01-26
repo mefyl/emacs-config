@@ -587,9 +587,14 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(after-save-hook (quote (executable-make-buffer-file-executable-if-script-p)))
- '(require-final-newline t))
  '(gdb-max-frames 1024)
+ '(ido-auto-merge-work-directories-length -1)
+ '(ido-confirm-unique-completion t)
+ '(ido-create-new-buffer (quote always))
+ '(ido-everywhere t)
  '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'" "\\`\\*stack frames of.*\\*\\'" "\\`\\*gud\\*\\'" "\\`\\*locals of.*\\*\\'" "\\` ")))
+ '(ido-mode (quote both) nil (ido))
+ '(require-final-newline t))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
