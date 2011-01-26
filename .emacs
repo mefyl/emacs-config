@@ -641,4 +641,9 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(magit-diff-add ((((class color) (background dark)) (:foreground "green")))))
+ '(magit-diff-add ((((class color) (background dark)) (:foreground "green"))))
+ '(magit-diff-file-header ((t (:inherit magit-header :weight bold :height 1.6))))
+ '(magit-diff-hunk-header ((t (:inherit magit-header :weight bold :height 1.3))))
+ '(magit-diff-none ((t (:foreground "grey80"))))
+ '(magit-header ((t nil)))
+ '(magit-section-title ((t (:inherit magit-header :underline t :weight bold :height 2.0)))))
