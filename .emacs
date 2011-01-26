@@ -633,3 +633,5 @@
   (jump-to-register ?%))
 
 (may-load "~/.emacs.local")
+
+(prefer-coding-system 'utf-8)
