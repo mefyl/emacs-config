@@ -216,4 +216,26 @@
 	[(control c) (k)]
 	'my-gdb-kill)
 
+;; HS mode
+
+(define-key
+	c-mode-base-map
+	[(control c) (left)]
+	'hs-hide-block)
+
+(define-key
+	c-mode-base-map
+	[(control c) (up)]
+	'hs-hide-level)
+
+(define-key
+	c-mode-base-map
+	[(control c) (right)]
+  'hs-show-block)
+
+(define-key
+	c-mode-base-map
+	[(control c) (down)]
+	'hs-show-all)
+
 (provide 'my-c-mode)
