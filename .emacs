@@ -647,6 +647,11 @@
 
 (prefer-coding-system 'utf-8)
 
+;; Framemove
+(require 'framemove)
+(windmove-default-keybindings)
+(setq framemove-hook-into-windmove t)
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
