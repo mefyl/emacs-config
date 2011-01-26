@@ -35,7 +35,7 @@
 
 (defun c-make-include (path paths)
 	(if paths
-			(let ((rg (concat "^" (car paths))))
+			(let ((rg (concat "^" (car paths) "/")))
 				(if (string-match rg path)
 						(concat "<" (replace-regexp-in-string rg "" path) ">")
 					(c-make-include path (cdr paths))))
