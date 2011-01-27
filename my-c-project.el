@@ -62,10 +62,18 @@
               (replace-regexp-in-string re "" path))))))
     (c++-project-files-headers))))
 
-
-
 (defun c++-project-find-file (&optional any)
   (interactive "P")
   (if any
       (ido-find-file)
     (find-file (ido-completing-read "File: " (c++-project-files) () t "" () ()))))
+
+(defun c++-project-insert-local-include (name)
+  (interactive (list (ido-completing-read "Include: " (c++-project-files-includes) () t "" () ())))
+  (save-excursion
+    (c-open-preproc)
+    (insert "include <")
+    (insert name)
+    (insert ">")))
+
+(define-key c-mode-base-map [(control c) (control i)] 'c++-project-insert-local-include)
