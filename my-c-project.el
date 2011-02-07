@@ -66,7 +66,9 @@
   (interactive "P")
   (if any
       (ido-find-file)
-    (find-file (ido-completing-read "File: " (c++-project-files) () t "" () ()))))
+    (find-file (concat c++-project-root
+                       (ido-completing-read "File: " (c++-project-files)
+                                            () t "" () ())))))
 
 (defun c++-project-insert-local-include (name)
   (interactive (list (ido-completing-read "Include: " (c++-project-files-includes) () t "" () ())))
