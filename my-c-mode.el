@@ -177,10 +177,10 @@
 ;;     'c-window-layout)
 
 ;; Insert inclusion
-(define-key
-	c-mode-base-map
-	[(control c) (control i)]
-	'c-insert-include)
+;; (define-key
+;;	c-mode-base-map
+;;	[(control c) (control i)]
+;;	'c-insert-include)
 
 ;; Rebox comment
 (define-key
