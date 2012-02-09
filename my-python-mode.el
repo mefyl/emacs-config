@@ -1,6 +1,7 @@
 (custom-set-variables
  '(python-indent 2))
 
+;;;###autoload
 (defun python-mode-setup ()
 
   ;; ------------- ;;
@@ -16,13 +17,13 @@
 
   ;; comment
   (define-key
-    py-mode-map
+    python-mode-map
     [(control c) (control c)]
     'comment-region)
 
   ;; rebox
   (define-key
-    py-mode-map
+    python-mode-map
     [(meta q)]
     'my-rebox-comment)
 

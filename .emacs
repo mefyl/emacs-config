@@ -24,11 +24,11 @@
 (require 'my-elisp)
 (require 'my-font)
 (require 'my-lisp-mode)
-(require 'my-python-mode)
 
 ;; Modes setup
 (add-hook 'sh-mode-hook 'sh-mode-setup)
 (add-hook 'c++-mode-hook 'c++-mode-setup)
+(add-hook 'python-mode-hook 'python-mode-setup)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)

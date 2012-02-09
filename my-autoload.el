@@ -32,6 +32,17 @@ Not documented
 
 ;;;***
 
+;;;### (autoloads (python-mode-setup) "my-python-mode" "my-python-mode.el"
+;;;;;;  (20275 53574))
+;;; Generated autoloads from my-python-mode.el
+
+(autoload 'python-mode-setup "my-python-mode" "\
+Not documented
+
+\(fn)" nil nil)
+
+;;;***
+
 ;;;### (autoloads (my-rebox-comment) "my-rebox" "my-rebox.el" (19773
 ;;;;;;  58722))
 ;;; Generated autoloads from my-rebox.el
@@ -97,12 +108,6 @@ Resume window/buffer configuration.
 Configuration should be saved by save-current-configuration.
 
 \(fn &optional NUM)" t nil)
-
-;;;***
-
-;;;### (autoloads nil nil ("my-elisp.el" "my-font.el" "my-gdb.el"
-;;;;;;  "my-lisp-mode.el" "my-python-mode.el" "my-revive.el" "my-shebang.el"
-;;;;;;  "rebox.el" "sgml.el" "tuareg.el") (19773 58850 199598))
 
 ;;;***
 
