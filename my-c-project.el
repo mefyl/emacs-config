@@ -78,4 +78,18 @@
     (insert name)
     (insert ">")))
 
-(define-key c-mode-base-map [(control c) (control i)] 'c++-project-insert-local-include)
+(defun c++-project-insert-standard-include (name)
+  (interactive "sInclude: \n")
+  (save-excursion
+    (c-open-preproc)
+    (insert "include <")
+    (insert name)
+    (insert ">")))
+
+(defun c++-project-insert-include (std)
+  (interactive "P")
+  (if std
+      (call-interactively 'c++-project-insert-standard-include)
+    (call-interactively 'c++-project-insert-local-include)))
+
+(define-key c-mode-base-map [(control c) (control i)] 'c++-project-insert-include)
