@@ -46,7 +46,9 @@
    (c++-project-files)))
 
 (defun c++-project-include-re (path)
-  (concat "^" path "/"))
+  (if (string-equal path "")
+      ""
+    (concat "^" path "/")))
 
 (defun c++-project-files-includes ()
   (remove-if-not
