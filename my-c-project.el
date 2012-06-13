@@ -42,7 +42,7 @@
 
 (defun c++-project-files-headers ()
   (remove-if-not
-   (lambda (path) (when (string-match "\\(\\.hh\\|\\.h\\)$" path) path))
+   (lambda (path) (when (string-match "\\(\\.hh\\|\\.hxx\\|\\.h\\)$" path) path))
    (c++-project-files)))
 
 (defun c++-project-include-re (path)
