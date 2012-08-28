@@ -509,6 +509,14 @@
   [(control c) (control c)]
   'comment-region)                                      ; comment
 
+;; Conf mode
+
+(require 'conf-mode)
+
+(define-key
+  conf-mode-map
+  [(control c) (control c)]
+  'comment-region)                                      ; comment
 
 ;; C / C++ mode
 
