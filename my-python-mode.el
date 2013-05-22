@@ -12,6 +12,8 @@
   (set-font-size 80)
   ;; Comment boxing style
   (set 'my-rebox-style 423)
+  ;; Show fill column indicator.
+  (fci-mode)
 
   ;; -------- ;;
   ;; BINDINGS ;;
