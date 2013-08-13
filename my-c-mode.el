@@ -179,10 +179,13 @@
 ;; Configuration ;;
 ;; ------------- ;;
 
-;; Rebox with C-style comments
 ;;;###autoload
 (defun c++-mode-setup ()
-  (set 'my-rebox-style 223))
+  ;; Rebox with C-style comments
+  (set 'my-rebox-style 223)
+  ;; Show 80 column marker
+  (set-variable 'fill-column 80)
+  (fci-mode))
 
 ;; --- ;;
 ;; GDB ;;
