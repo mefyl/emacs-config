@@ -502,6 +502,7 @@
  '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'" "\\`\\*stack frames of.*\\*\\'" "\\`\\*gud\\*\\'" "\\`\\*locals of.*\\*\\'" "\\` ")))
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
+ '(line-move-visual nil)
  '(python-indent 2)
  '(require-final-newline t))
 
