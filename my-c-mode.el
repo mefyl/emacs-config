@@ -88,6 +88,79 @@
 		(insert name)
 		(insert ">")))
 
+;; Debug output
+
+(defun c-insert-debug (&optional msg)
+  (interactive)
+  (when (not (looking-at "\\W*$"))
+    (beginning-of-line)
+    (insert "\n")
+    (line-move -1))
+  (c-indent-line)
+  (insert "std::cerr << \"\" << std::endl;")
+  (backward-char 15))
+
+;; Blocks
+
+(defun c-insert-block (&optional r b a)
+  (interactive "P")
+  (unless b (setq b ""))
+  (unless a (setq a ""))
+  (if r
+      (progn
+        (save-excursion
+          (goto-char (rbegin))
+          (beginning-of-line)
+          (insert "\n")
+          (line-move -1)
+          (insert b "{")
+          (c-indent-line))
+        (save-excursion
+          (goto-char (- (rend) 1))
+          (end-of-line)
+          (insert "\n}" a)
+          (c-indent-line)
+          (line-move -1)
+          (end-of-line))
+        (indent-region (rbegin) (rend)))
+    (progn
+        (beginning-of-line)
+
+        (setq begin (point))
+
+        (insert b "{\n")
+        (end-of-line)
+        (insert "\n}" a)
+
+        (indent-region begin (point))
+
+        (line-move -1)
+        (end-of-line))))
+
+(defun c-insert-braces (&optional r)
+  (interactive "P")
+  (c-insert-block r))
+
+(defun c-insert-ns (name r)
+  (interactive "sName: \nP")
+  (c-insert-block r (concat "namespace " name "\n")))
+
+(defun c-insert-switch (value r)
+  (interactive "sValue: \nP")
+  (c-insert-block r (concat "switch (" value ")\n")))
+
+(defun c-insert-if (c r)
+  (interactive "sCondition: \nP")
+  (c-insert-block r (concat "if (" c ")\n")))
+
+(defun c-insert-class (name)
+  (interactive "sName: ")
+  (c-insert-block () (concat "class " name "\n") ";")
+  (insert "public:")
+  (c-indent-line)
+  (insert "\n")
+  (c-indent-line))
+
 ;; -------------------- ;;
 ;; Automatic insertions ;;
 ;; -------------------- ;;
@@ -169,6 +242,15 @@
 ;; -------- ;;
 ;; Bindings ;;
 ;; -------- ;;
+
+(define-key c-mode-base-map [(control c) (w)] 'c-switch-hh-cc)
+(define-key c-mode-base-map [(control c) (f)] 'hs-hide-block)
+(define-key c-mode-base-map [(control c) (s)] 'hs-show-block)
+(define-key c-mode-base-map [(control c) (control n)] 'c-insert-ns)
+(define-key c-mode-base-map [(control c) (control b)] 'c-insert-braces)
+(define-key c-mode-base-map [(control c) (control f)] 'insert-fixme)
+(define-key c-mode-base-map [(control c) (control d)] 'c-insert-debug)
+(define-key c-mode-base-map [(control c) (control l)] 'c-insert-class)
 
 ;;   ;; Lay window out
 ;;   (define-key
