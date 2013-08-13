@@ -156,7 +156,7 @@
     (insert "int main()\n{\n\n}\n")
     (line-move -2)
     (save-buffer)
-    (compile (concat "g++ -W -Wall -I /usr/include/qt4/ -I /usr/include/qt4/QtCore/ -L /usr/lib/qt4 -lQtCore " file " && ./a.out"))))
+    (compile (concat "g++ -W -Wall -std=c++11 " file " && ./a.out"))))
 
 (defun c-insert-debug (&optional msg)
   (interactive)
