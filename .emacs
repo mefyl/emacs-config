@@ -489,10 +489,10 @@
    '(ido-mode (quote both) nil (ido))))
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(after-save-hook (quote (executable-make-buffer-file-executable-if-script-p)))
  '(gdb-max-frames 1024)
  '(ido-auto-merge-work-directories-length -1)
@@ -548,10 +548,10 @@
 (setq framemove-hook-into-windmove t)
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(magit-diff-add ((((class color) (background dark)) (:foreground "green"))))
  '(magit-diff-file-header ((t (:inherit magit-header :weight bold :height 1.6))))
  '(magit-diff-hunk-header ((t (:inherit magit-header :weight bold :height 1.3))))
