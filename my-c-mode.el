@@ -1,5 +1,33 @@
-(require 'my-elisp)
+(require 'cc-mode)
 (require 'cmacexp)
+(require 'my-elisp)
+
+;; ----- ;;
+;; Style ;;
+;; ----- ;;
+
+(defun c-lineup-C-comments-boxes (arg)
+  (let ((box (save-excursion
+               (goto-char (cdr arg))
+               (looking-at "/\\*-*\\.$"))))
+    (if box
+        0
+      (c-lineup-C-comments arg))))
+
+(c-add-style "epita"
+             '((c-basic-offset . 2)
+               (c-comment-only-line-offset . 0)
+               (c-hanging-braces-alist     . ((substatement-open before after)))
+               (c-offsets-alist . ((topmost-intro        . 0)
+                                   (substatement         . +)
+                                   (substatement-open    . 0)
+                                   (case-label           . +)
+                                   (access-label         . -)
+                                   (inclass              . ++)
+                                   (inline-open          . 0)
+                                   (c                    . c-lineup-C-comments-boxes)))))
+(setq c-default-style '((c++-mode ."epita")))
+
 
 ;; ------------ ;;
 ;; Preprocessor ;;
