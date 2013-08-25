@@ -378,7 +378,7 @@
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    )
-  (set-font-size))
+  (set-font-size 80))
 (configure-frame)
 (add-to-list 'after-make-frame-functions
              (lambda (f) (select-frame f) (configure-frame)))
