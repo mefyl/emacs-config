@@ -1,4 +1,5 @@
 (require 'cl)
+(require 'my-c-mode)
 
 ;;;###autoload
 (defun c++-project (incpath buildpath buildcmd binary args)
