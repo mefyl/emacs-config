@@ -138,6 +138,17 @@ Default MODIFIER is 'meta.
 
 ;;;***
 
+;;;### (autoloads (my-rm-set-mark) "my-rect-mark" "my-rect-mark.el"
+;;;;;;  (21342 37572 194478 106000))
+;;; Generated autoloads from my-rect-mark.el
+
+(autoload 'my-rm-set-mark "my-rect-mark" "\
+
+
+\(fn FORCE)" nil nil)
+
+;;;***
+
 ;;;### (autoloads (sh-mode-setup) "my-sh-mode" "my-sh-mode.el" (21074
 ;;;;;;  47689 877686 308000))
 ;;; Generated autoloads from my-sh-mode.el
@@ -151,7 +162,7 @@ Default MODIFIER is 'meta.
 
 ;;;### (autoloads (rm-mouse-drag-region rm-kill-ring-save rm-kill-region
 ;;;;;;  rm-exchange-point-and-mark rm-set-mark rm-example-picture-mode-bindings)
-;;;;;;  "rect-mark" "rect-mark.el" (21341 39954 815885 445000))
+;;;;;;  "rect-mark" "rect-mark.el" (21341 40732 809917 384000))
 ;;; Generated autoloads from rect-mark.el
  (define-key ctl-x-map "r\C-@" 'rm-set-mark)
  (define-key ctl-x-map [?r ?\C-\ ] 'rm-set-mark)
@@ -220,7 +231,7 @@ This must be bound to a button-down mouse event.
 ;;;;;;  "../dev/mmm-mode/mmm-sample.el" "../dev/mmm-mode/mmm-univ.el"
 ;;;;;;  "../dev/mmm-mode/mmm-utils.el" "flx.el" "my-elisp.el" "my-font.el"
 ;;;;;;  "my-lisp-mode.el" "my-shebang.el" "my-templates.el" "rebox.el"
-;;;;;;  "sgml.el" "tuareg.el") (21341 40263 537636 473000))
+;;;;;;  "sgml.el" "tuareg.el") (21342 37591 99011 895000))
 
 ;;;***
 
