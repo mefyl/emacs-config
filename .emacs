@@ -547,3 +547,5 @@
  '(magit-diff-none ((t (:foreground "grey80"))))
  '(magit-header ((t nil)))
  '(magit-section-title ((t (:inherit magit-header :underline t :weight bold :height 2.0)))))
+
+(setq x-alt-keysym 'meta)
