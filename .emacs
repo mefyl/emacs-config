@@ -232,15 +232,17 @@
 
 (when has-ido
   (ido-mode t)
-
-;; tab means tab, i.e. complete. Not "open this file", stupid.
+  ;; tab means tab, i.e. complete. Not "open this file", stupid.
   (setq ido-confirm-unique-completion t)
-;; If the file doesn't exist, do not try to invent one from a
-;; transplanar directory. I just want a new file.
+  ;; If the file doesn't exist, do not try to invent one from a
+  ;; transplanar directory. I just want a new file.
   (setq ido-auto-merge-work-directories-length -1)
-
-;; Don't switch to GDB-mode buffers
-  (add-to-list 'ido-ignore-buffers "locals"))
+  ;; Don't switch to GDB-mode buffers
+  (add-to-list 'ido-ignore-buffers "locals")
+  (flx-ido-mode)
+  ;; disable ido faces to see flx highlights.
+  ;; (setq ido-use-faces nil)
+)
 
 ;; GNUSERV
 
