@@ -23,7 +23,7 @@
                                    (substatement-open    . 0)
                                    (case-label           . +)
                                    (access-label         . -)
-                                   (inclass              . ++)
+                                   (inclass              . +)
                                    (inline-open          . 0)
                                    (c                    . c-lineup-C-comments-boxes)))))
 (setq c-default-style '((c++-mode ."epita")))
