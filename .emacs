@@ -224,7 +224,10 @@
 (add-to-list 'auto-mode-alist '("\\.pro$" . sh-mode)) ; Qt .pro files
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
 (add-to-list 'auto-mode-alist '("drakefile$" . python-mode))
+(add-to-list 'auto-mode-alist '("drake$" . python-mode))
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
+(add-to-list 'auto-mode-alist '("\\.tmpl$" () t))
+(add-to-list 'interpreter-mode-alist '("python3" . python-mode))
 
 ;; Ido
 
