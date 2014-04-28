@@ -536,6 +536,22 @@
 (windmove-default-keybindings)
 (setq framemove-hook-into-windmove t)
 
+;; Rectangle Mark
+
+(global-set-key (kbd "C-x r C-SPC") 'rm-set-mark)
+(global-set-key (kbd "C-w")
+  '(lambda(b e) (interactive "r")
+     (if rm-mark-active
+       (rm-kill-region b e) (kill-region b e))))
+(global-set-key (kbd "M-w")
+  '(lambda(b e) (interactive "r")
+     (if rm-mark-active
+       (rm-kill-ring-save b e) (kill-ring-save b e))))
+(global-set-key (kbd "C-x C-x")
+  '(lambda(&optional p) (interactive "p")
+     (if rm-mark-active
+       (rm-exchange-point-and-mark p) (exchange-point-and-mark p))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
