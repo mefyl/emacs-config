@@ -74,15 +74,6 @@
 
 ;; Edition
 
-(defun c-switch-hh-cc ()
-  (interactive)
-  (let ((other
-         (let ((file (buffer-file-name)))
-           (if (string-match "\\.hh$" file)
-               (replace-regexp-in-string "\\.hh$" ".cc" file)
-             (replace-regexp-in-string "\\.cc$" ".hh" file)))))
-    (find-file other)))
-
 (defun count-word (start end)
   (let ((begin (min start end))(end (max start end)))
     (save-excursion

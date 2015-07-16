@@ -270,6 +270,23 @@
 	(interactive)
 	(window-set-width 80))
 
+(defun c-switch-hh-cc ()
+  (interactive)
+  (let ((extensions '("hh" "hxx" "cc"))
+        (current (buffer-file-name)))
+    (let ((extension (find-if (lambda (ext) (string-match (concat "\\." ext "$") current)) extensions))
+          (find-next (lambda (extensions extension pos current)
+                       (let ((new_pos (mod (+ pos 1) (length extensions))))
+                         (let ((new_extension (concat "." (nth new_pos extensions)))
+                               (re (concat "\\." extension "$")))
+                           (let ((next (replace-regexp-in-string re new_extension current)))
+                             (if (file-exists-p next)
+                                 (find-file next)
+                               (funcall find-next extensions extension new_pos current))))))))
+      (when extension
+        (let ((pos (position extension extensions)))
+          (funcall find-next extensions extension pos current))))))
+
 ;; -------- ;;
 ;; Bindings ;;
 ;; -------- ;;
