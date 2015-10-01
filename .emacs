@@ -50,28 +50,6 @@
   (interactive)
   (load-file "~/.emacs"))
 
-;; Compilation
-
-(defvar cpu-number 1
-  "Number of parallel processing units on this system")
-
-(setq compile-command "")
-
-(defun build ()
-  (interactive)
-	(if (string-equal compile-command "")
-		(let ((path (cwd)))
-			(while (not (or (file-readable-p (concat path "/Makefile")) (string-equal path "")))
-				(message path)
-				(setq path (replace-regexp-in-string "/[^/]*\\'" "" path)))
-			(message path)
-			(if (string-equal path "")
-				(message "No Makefile found.")
-				(progn
-					(setq path (replace-regexp-in-string " " "\\\\ " path))
-					(compile (concat "make -C " path)))))
-		(recompile)))
-
 ;; Edition
 
 (defun count-word (start end)
@@ -352,7 +330,7 @@
 (global-set-key [M-right] 'windmove-right)              ; move to right window
 (global-set-key [M-up] 'windmove-up)                    ; move to upper window
 (global-set-key [M-down] 'windmove-down)
-(global-set-key [(control c) (c)] 'build)
+(global-set-key [(control c) (c)] 'my-recompile)
 (global-set-key [(control c) (e)] 'next-error)
 (global-set-key [(control tab)] 'other-window)          ; Ctrl-Tab = Next buffer
 (global-set-key [C-S-iso-lefttab]
