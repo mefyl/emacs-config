@@ -167,7 +167,11 @@
 ;; HOOKS
 
 ; Delete trailing whitespaces on save
-(add-hook 'write-file-hooks 'delete-trailing-whitespace)
+(add-hook
+ 'write-file-hooks
+ (lambda () (when (not (eq major-mode 'mail-mode))
+              (delete-trailing-whitespace))))
+
 ; Auto insert C/C++ header guard
 (add-hook 'find-file-hooks
 	  (lambda ()
