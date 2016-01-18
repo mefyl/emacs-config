@@ -18,7 +18,7 @@
 (defconst conf-dir (concat (getenv "HOME") "/.emacs.conf/")
   "Location of the configuration files")
 (add-to-list 'load-path conf-dir)
-
+(add-to-list 'load-path (concat (getenv "HOME") "/local/share/emacs/site-lisp/"))
 (set 'generated-autoload-file (concat conf-dir "my-autoload.el"))
 (require 'my-autoload)
 (require 'my-elisp)
