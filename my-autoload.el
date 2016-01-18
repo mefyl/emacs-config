@@ -100,8 +100,8 @@ Default MODIFIER is 'meta.
 
 ;;;***
 
-;;;### (autoloads nil "my-compile" "my-compile.el" (22029 25638 113966
-;;;;;;  580000))
+;;;### (autoloads nil "my-compile" "my-compile.el" (22029 25835 745972
+;;;;;;  634000))
 ;;; Generated autoloads from my-compile.el
 
 (autoload 'my-recompile "my-compile" "\
@@ -190,6 +190,17 @@ Default MODIFIER is 'meta.
 
 
 \(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil "qml-mode" "qml-mode.el" (22172 45172 284049
+;;;;;;  258000))
+;;; Generated autoloads from qml-mode.el
+
+(autoload 'qml-mode "qml-mode" "\
+Major mode for Qt declarative UI
+
+\(fn)" t nil)
 
 ;;;***
 
@@ -513,7 +524,7 @@ List all reimplentations of function under cursor. This includes both declaratio
 ;;;;;;  "../dev/mmm-mode/mmm-sample.el" "../dev/mmm-mode/mmm-univ.el"
 ;;;;;;  "../dev/mmm-mode/mmm-utils.el" "flx.el" "my-elisp.el" "my-font.el"
 ;;;;;;  "my-lisp-mode.el" "my-shebang.el" "my-templates.el" "rebox.el"
-;;;;;;  "sgml.el" "tuareg.el") (22029 25751 459449 281000))
+;;;;;;  "sgml.el" "tuareg.el") (22172 45219 255133 858000))
 
 ;;;***
 
