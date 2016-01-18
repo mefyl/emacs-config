@@ -29,6 +29,7 @@
 (add-hook 'sh-mode-hook 'sh-mode-setup)
 (add-hook 'c++-mode-hook 'c++-mode-setup)
 (add-hook 'python-mode-hook 'python-mode-setup)
+(add-hook 'log-view-mode-hook 'my-log-view-mode-setup)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
@@ -198,6 +199,7 @@
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
 (add-to-list 'auto-mode-alist '("\\.tmpl$" () t))
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.log\\'" . elle-log-mode))
 
 ;; Ido
 
