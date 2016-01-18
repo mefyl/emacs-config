@@ -8,8 +8,6 @@
   ;; CONFIGURATION ;;
   ;; ------------- ;;
 
-  ;; Change font size.
-  (set-font-size 80)
   ;; Comment boxing style
   (set 'my-rebox-style 423)
   ;; Show fill column indicator.
