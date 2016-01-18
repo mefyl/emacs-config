@@ -369,4 +369,7 @@
 	[(control c) (down)]
 	'hs-show-all)
 
+(define-key c-mode-base-map (kbd "M-.") (function rtags-find-symbol-at-point))
+(define-key c-mode-base-map (kbd "M-,") (function rtags-find-references-at-point))
+
 (provide 'my-c-mode)
