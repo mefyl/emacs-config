@@ -187,6 +187,7 @@
 (add-to-list 'auto-mode-alist '("\\.l$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.y$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ll$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
 (add-to-list 'auto-mode-alist '("\\.yy$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.xcc$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.xhh$" . c++-mode))
