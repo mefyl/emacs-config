@@ -203,6 +203,22 @@
 
 (add-hook 'find-file-hooks (function c-hook-insert-header-inclusion))
 
+;; ------- ;;
+;; Sandbox ;;
+;; ------- ;;
+
+;;;###autoload
+(defun sandbox ()
+  "Opens a C++ sandbox in current window."
+  (interactive)
+  (cd "/tmp")
+  (let ((file (make-temp-file "/tmp/" nil ".cc")))
+    (find-file file)
+    (insert "int main()\n{\n\n}\n")
+    (line-move -2)
+    (save-buffer)
+    (compile (concat "g++ -W -Wall -std=c++11 " file " && ./a.out"))))
+
 ;; ------------- ;;
 ;; Configuration ;;
 ;; ------------- ;;

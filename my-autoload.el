@@ -524,13 +524,18 @@ List all reimplentations of function under cursor. This includes both declaratio
 ;;;;;;  "../dev/mmm-mode/mmm-sample.el" "../dev/mmm-mode/mmm-univ.el"
 ;;;;;;  "../dev/mmm-mode/mmm-utils.el" "flx.el" "my-elisp.el" "my-font.el"
 ;;;;;;  "my-lisp-mode.el" "my-shebang.el" "my-templates.el" "rebox.el"
-;;;;;;  "sgml.el" "tuareg.el") (22172 45219 255133 858000))
+;;;;;;  "sgml.el" "tuareg.el") (22333 40235 151087 868000))
 
 ;;;***
 
-;;;### (autoloads nil "my-c-mode" "my-c-mode.el" (21927 31800 494000
-;;;;;;  250000))
+;;;### (autoloads nil "my-c-mode" "my-c-mode.el" (22333 39737 574853
+;;;;;;  708000))
 ;;; Generated autoloads from my-c-mode.el
+
+(autoload 'sandbox "my-c-mode" "\
+Opens a C++ sandbox in current window.
+
+\(fn)" t nil)
 
 (autoload 'c++-mode-setup "my-c-mode" "\
 
