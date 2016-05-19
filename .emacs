@@ -513,6 +513,9 @@
 ;; Rectangle Mark
 (global-set-key (kbd "C-x r C-SPC") 'my-rm-set-mark)
 
+;; Recognize dead keys
+(require 'iso-transl)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
