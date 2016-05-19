@@ -178,6 +178,7 @@
 (add-hook 'c-mode-common-hook (lambda () (hs-minor-mode 1)))
 
 ;; file extensions
+(add-to-list 'auto-mode-alist '("ChangeLog$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.l$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.y$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ll$" . c++-mode))
@@ -193,6 +194,11 @@
 (add-to-list 'auto-mode-alist '("\\.tmpl$" () t))
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.log\\'" . elle-log-mode))
+
+;; Markdown
+
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-hook 'markdown-mode-hook 'flyspell-mode)
 
 ;; Ido
 
