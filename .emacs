@@ -351,11 +351,6 @@
 (add-to-list 'after-make-frame-functions
              (lambda (f) (select-frame f) (configure-frame)))
 
-;; Qt
-
-(font-lock-add-keywords 'c++-mode
-			'(("foreach\\|forever\\|emit" . 'font-lock-keyword-face)))
-
 ;; Lisp mode
 
 (require 'lisp-mode)
