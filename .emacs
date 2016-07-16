@@ -347,14 +347,7 @@
 (defun configure-frame ()
   (set-background-color "black")
   (set-foreground-color "white")
-  (set-cursor-color "Orangered")
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-  (set-font-size 80))
+  (set-cursor-color "Orangered"))
 (configure-frame)
 (add-to-list 'after-make-frame-functions
              (lambda (f) (select-frame f) (configure-frame)))
