@@ -22,7 +22,6 @@
 (set 'generated-autoload-file (concat conf-dir "my-autoload.el"))
 (require 'my-autoload)
 (require 'my-elisp)
-(require 'my-font)
 (require 'my-lisp-mode)
 
 ;; Modes setup
