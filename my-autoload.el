@@ -98,14 +98,17 @@ Default MODIFIER is 'meta.
 
 ;;;***
 
-;;;### (autoloads nil "my-compile" "my-compile.el" (22412 56196 51
-;;;;;;  20000))
+;;;### (autoloads nil "my-compile" "my-compile.el" (22412 56575 69053
+;;;;;;  486000))
 ;;; Generated autoloads from my-compile.el
 
 (autoload 'my-recompile "my-compile" "\
 
 
 \(fn)" t nil)
+
+(defconst system-cores-logical (string-to-int (shell-command-to-string "nproc")) "\
+number of logical processing unit on this system")
 
 ;;;***
 
@@ -260,6 +263,12 @@ Highlight a rectangular region of text as the the mouse is dragged over it.
 This must be bound to a button-down mouse event.
 
 \(fn START-EVENT)" t nil)
+
+;;;***
+
+;;;### (autoloads nil nil ("flx.el" "my-elisp.el" "my-font.el" "my-lisp-mode.el"
+;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (22412
+;;;;;;  56599 506409 910000))
 
 ;;;***
 

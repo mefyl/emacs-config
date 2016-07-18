@@ -24,3 +24,9 @@
           (switch-to-buffer "*compilation*")
           (shrink-window (- h compilation-window-height)))))))
 (add-hook 'compilation-mode-hook 'my-compilation-hook)
+
+;;;###autoload
+(defconst
+  system-cores-logical
+  (string-to-int (shell-command-to-string "nproc"))
+  "number of logical processing unit on this system")
