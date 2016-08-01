@@ -177,24 +177,24 @@
 (add-hook 'c-mode-common-hook (lambda () (hs-minor-mode 1)))
 
 ;; file extensions
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
 (add-to-list 'auto-mode-alist '("ChangeLog$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.ebuild$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.l$" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.sls$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.y$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ll$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.log\\'" . elle-log-mode))
+(add-to-list 'auto-mode-alist '("\\.pro$" . sh-mode)) ; Qt .pro files
 (add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
-(add-to-list 'auto-mode-alist '("\\.yy$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.sls$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.tmpl$" () t))
 (add-to-list 'auto-mode-alist '("\\.xcc$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.xhh$" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.pro$" . sh-mode)) ; Qt .pro files
+(add-to-list 'auto-mode-alist '("\\.y$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.yy$" . c++-mode))
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
-(add-to-list 'auto-mode-alist '("drakefile$" . python-mode))
 (add-to-list 'auto-mode-alist '("drake$" . python-mode))
-(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
-(add-to-list 'auto-mode-alist '("\\.tmpl$" () t))
+(add-to-list 'auto-mode-alist '("drakefile$" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.log\\'" . elle-log-mode))
 
 ;; Markdown
 
