@@ -179,6 +179,7 @@
 ;; file extensions
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
 (add-to-list 'auto-mode-alist '("ChangeLog$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("Dockerfile$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.ebuild$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.l$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ll$" . c++-mode))
