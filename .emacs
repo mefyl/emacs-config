@@ -442,6 +442,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(after-save-hook (quote (executable-make-buffer-file-executable-if-script-p)))
+ '(wdired-allow-to-change-permissions t)
  '(css-indent-offset 2)
  '(gdb-max-frames 1024)
  '(ido-auto-merge-work-directories-length -1)
