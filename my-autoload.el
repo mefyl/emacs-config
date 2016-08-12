@@ -194,6 +194,17 @@ number of logical processing unit on this system")
 
 ;;;***
 
+;;;### (autoloads nil "my-yaml-mode" "my-yaml-mode.el" (22444 20603
+;;;;;;  165871 372000))
+;;; Generated autoloads from my-yaml-mode.el
+
+(autoload 'yaml-mode-setup "my-yaml-mode" "\
+
+
+\(fn)" nil nil)
+
+;;;***
+
 ;;;### (autoloads nil "qml-mode" "qml-mode.el" (22406 3853 785010
 ;;;;;;  817000))
 ;;; Generated autoloads from qml-mode.el
@@ -266,9 +277,9 @@ This must be bound to a button-down mouse event.
 
 ;;;***
 
-;;;### (autoloads nil nil ("flx.el" "my-elisp.el" "my-font.el" "my-lisp-mode.el"
-;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (22412
-;;;;;;  56599 506409 910000))
+;;;### (autoloads nil nil ("flx.el" "my-elisp.el" "my-lisp-mode.el"
+;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (22444
+;;;;;;  20641 489428 918000))
 
 ;;;***
 
