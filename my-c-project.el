@@ -26,15 +26,28 @@
     (setq my-gdb-program (path (concat buildpath "/" binary)))
     (setq my-gdb-args args)
 
-    ;; Open files
-    ;; (mapcar (lambda (p) (find-file (path p))) sources)
-
     ;; Load tags
     (visit-tags-table (concat root "/TAGS"))
 
     ;; Override find-file
     (global-set-key [(control x) (control f)] 'c++-project-find-file)
-    ))
+
+    (find-file root)
+
+    ;; Open compilation window
+    (save-excursion
+      (let ((w (split-window-vertically)))
+        (select-window w)
+        (switch-to-buffer "*compilation*")
+        (shrink-window (- (window-height w) compilation-window-height))
+        (set-window-dedicated-p w t)))
+    (other-window 1)
+
+    ;; Open magit
+    (save-excursion
+      (let ((w (split-window-horizontally)))
+        (magit-status root)))
+    (other-window 2)))
 
 (defun c++-project-files ()
   (save-excursion
