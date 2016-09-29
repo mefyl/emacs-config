@@ -389,4 +389,19 @@
 (define-key c-mode-base-map (kbd "M-.") (function rtags-find-symbol-at-point))
 (define-key c-mode-base-map (kbd "M-,") (function rtags-find-references-at-point))
 
+;; C++ 11
+
+(font-lock-add-keywords
+ 'c++-mode
+ '(("alignof" . font-lock-keyword-face)
+   ("alignas" . font-lock-keyword-face)
+   ("constexpr" . font-lock-keyword-face)
+   ("decltype" . font-lock-keyword-face)
+   ("noexcept" . font-lock-keyword-face)
+   ("nullptr" . font-lock-keyword-face)
+   ("static_assert" . font-lock-keyword-face)
+   ("thread_local" . font-lock-keyword-face)
+   ("override" . font-lock-keyword-face)
+   ("final" . font-lock-keyword-face)))
+
 (provide 'my-c-mode)
