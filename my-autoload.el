@@ -123,6 +123,17 @@ number of logical processing unit on this system")
 
 ;;;***
 
+;;;### (autoloads nil "my-html-mode" "my-html-mode.el" (22486 30651
+;;;;;;  676722 799000))
+;;; Generated autoloads from my-html-mode.el
+
+(autoload 'html-mode-setup "my-html-mode" "\
+
+
+\(fn)" nil nil)
+
+;;;***
+
 ;;;### (autoloads nil "my-layout" "my-layout.el" (22406 3853 785010
 ;;;;;;  817000))
 ;;; Generated autoloads from my-layout.el
@@ -144,6 +155,17 @@ number of logical processing unit on this system")
 ;;; Generated autoloads from my-log-view-mode.el
 
 (autoload 'my-log-view-mode-setup "my-log-view-mode" "\
+
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil "my-markdown-mode" "my-markdown-mode.el" (22468
+;;;;;;  9602 782011 328000))
+;;; Generated autoloads from my-markdown-mode.el
+
+(autoload 'markdown-mode-setup "my-markdown-mode" "\
 
 
 \(fn)" nil nil)
@@ -278,8 +300,8 @@ This must be bound to a button-down mouse event.
 ;;;***
 
 ;;;### (autoloads nil nil ("flx.el" "my-elisp.el" "my-lisp-mode.el"
-;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (22444
-;;;;;;  20641 489428 918000))
+;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (22486
+;;;;;;  30660 804614 89000))
 
 ;;;***
 

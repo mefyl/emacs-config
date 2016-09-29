@@ -201,7 +201,11 @@
 ;; Markdown
 
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-hook 'markdown-mode-hook 'flyspell-mode)
+(add-hook 'markdown-mode-hook 'markdown-mode-setup)
+
+;; HTML
+
+(add-hook 'html-mode-hook 'html-mode-setup)
 
 ;; Ido
 
