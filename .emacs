@@ -25,10 +25,10 @@
 (require 'my-lisp-mode)
 
 ;; Modes setup
-(add-hook 'sh-mode-hook 'sh-mode-setup)
 (add-hook 'c++-mode-hook 'c++-mode-setup)
-(add-hook 'python-mode-hook 'python-mode-setup)
 (add-hook 'log-view-mode-hook 'my-log-view-mode-setup)
+(add-hook 'python-mode-hook 'python-mode-setup)
+(add-hook 'sh-mode-hook 'sh-mode-setup)
 (add-hook 'yaml-mode-hook 'yaml-mode-setup)
 
 (defconst has-gnuserv
