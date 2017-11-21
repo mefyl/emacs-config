@@ -193,6 +193,7 @@
 (add-to-list 'auto-mode-alist '("\\.xcc$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.xhh$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.y$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yy$" . c++-mode))
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
 (add-to-list 'auto-mode-alist '("drake$" . python-mode))
