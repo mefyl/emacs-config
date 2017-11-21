@@ -87,8 +87,8 @@ Default MODIFIER is 'meta.
 
 ;;;***
 
-;;;### (autoloads nil "my-c-project" "my-c-project.el" (22406 3853
-;;;;;;  785010 817000))
+;;;### (autoloads nil "my-c-project" "my-c-project.el" (22508 55112
+;;;;;;  995305 350000))
 ;;; Generated autoloads from my-c-project.el
 
 (autoload 'c++-project "my-c-project" "\
@@ -123,8 +123,19 @@ number of logical processing unit on this system")
 
 ;;;***
 
-;;;### (autoloads nil "my-html-mode" "my-html-mode.el" (22486 30651
-;;;;;;  676722 799000))
+;;;### (autoloads nil "my-go-mode" "my-go-mode.el" (23003 24459 315394
+;;;;;;  505000))
+;;; Generated autoloads from my-go-mode.el
+
+(autoload 'go-mode-setup "my-go-mode" "\
+
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil "my-html-mode" "my-html-mode.el" (22494 48687
+;;;;;;  198861 613000))
 ;;; Generated autoloads from my-html-mode.el
 
 (autoload 'html-mode-setup "my-html-mode" "\
@@ -134,8 +145,8 @@ number of logical processing unit on this system")
 
 ;;;***
 
-;;;### (autoloads nil "my-layout" "my-layout.el" (22406 3853 785010
-;;;;;;  817000))
+;;;### (autoloads nil "my-layout" "my-layout.el" (22499 40735 841371
+;;;;;;  265000))
 ;;; Generated autoloads from my-layout.el
 
 (autoload 'window-set-width "my-layout" "\
@@ -161,8 +172,8 @@ number of logical processing unit on this system")
 
 ;;;***
 
-;;;### (autoloads nil "my-markdown-mode" "my-markdown-mode.el" (22468
-;;;;;;  9602 782011 328000))
+;;;### (autoloads nil "my-markdown-mode" "my-markdown-mode.el" (22494
+;;;;;;  48608 194866 259000))
 ;;; Generated autoloads from my-markdown-mode.el
 
 (autoload 'markdown-mode-setup "my-markdown-mode" "\
@@ -300,13 +311,13 @@ This must be bound to a button-down mouse event.
 ;;;***
 
 ;;;### (autoloads nil nil ("flx.el" "my-elisp.el" "my-lisp-mode.el"
-;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (22486
-;;;;;;  30660 804614 89000))
+;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (23060
+;;;;;;  1597 130637 521000))
 
 ;;;***
 
-;;;### (autoloads nil "my-c-mode" "my-c-mode.el" (22406 3853 785010
-;;;;;;  817000))
+;;;### (autoloads nil "my-c-mode" "my-c-mode.el" (22487 52083 431370
+;;;;;;  152000))
 ;;; Generated autoloads from my-c-mode.el
 
 (autoload 'sandbox "my-c-mode" "\
