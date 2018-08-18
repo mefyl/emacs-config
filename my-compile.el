@@ -28,5 +28,5 @@
 ;;;###autoload
 (defconst
   system-cores-logical
-  (string-to-int (shell-command-to-string "nproc"))
+  (string-to-number (shell-command-to-string "nproc"))
   "number of logical processing unit on this system")

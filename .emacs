@@ -41,7 +41,7 @@
 (defconst xemacs (string-match "XEmacs" emacs-version)
   "non-nil iff XEmacs, nil otherwise")
 
-(defconst emacs-major (string-to-int (replace-regexp-in-string "\\..*" "" emacs-version))
+(defconst emacs-major (string-to-number (replace-regexp-in-string "\\..*" "" emacs-version))
   "Emacs major version")
 
 ;; CUSTOM FUNCTIONS

@@ -107,7 +107,7 @@ Default MODIFIER is 'meta.
 
 \(fn)" t nil)
 
-(defconst system-cores-logical (string-to-int (shell-command-to-string "nproc")) "\
+(defconst system-cores-logical (string-to-number (shell-command-to-string "nproc")) "\
 number of logical processing unit on this system")
 
 ;;;***
