@@ -10,6 +10,8 @@
 
   ;; Comment boxing style
   (set 'my-rebox-style 423)
+  ;; Set fill column to 100 instead of 72
+  (set-fill-column 100)
   ;; Show fill column indicator.
   (fci-mode)
 
