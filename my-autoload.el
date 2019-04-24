@@ -98,8 +98,7 @@ Default MODIFIER is 'meta.
 
 ;;;***
 
-;;;### (autoloads nil "my-compile" "my-compile.el" (22412 56575 69053
-;;;;;;  486000))
+;;;### (autoloads nil "my-compile" "my-compile.el" (0 0 0 0))
 ;;; Generated autoloads from my-compile.el
 
 (autoload 'my-recompile "my-compile" "\
@@ -109,6 +108,8 @@ Default MODIFIER is 'meta.
 
 (defconst system-cores-logical (string-to-number (shell-command-to-string "nproc")) "\
 number of logical processing unit on this system")
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-compile" '("my-compilation-hook")))
 
 ;;;***
 
@@ -123,14 +124,23 @@ number of logical processing unit on this system")
 
 ;;;***
 
-;;;### (autoloads nil "my-go-mode" "my-go-mode.el" (23003 24459 315394
-;;;;;;  505000))
+;;;### (autoloads nil "my-go-mode" "my-go-mode.el" (0 0 0 0))
 ;;; Generated autoloads from my-go-mode.el
+
+(autoload 'goimports-before-save "my-go-mode" "\
+Add this to .emacs to run goimports on the current buffer when saving:
+ (add-hook 'before-save-hook 'goimports-before-save).
+Note that this will cause go-mode to get loaded the first time
+you save any file, kind of defeating the point of autoloading.
+
+\(fn)" t nil)
 
 (autoload 'go-mode-setup "my-go-mode" "\
 
 
 \(fn)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-go-mode" '(#("goimports" 0 9 (face font-lock-function-name-face fontified t)))))
 
 ;;;***
 
@@ -172,6 +182,16 @@ number of logical processing unit on this system")
 
 ;;;***
 
+;;;### (autoloads nil "my-magit" "my-magit.el" (0 0 0 0))
+;;; Generated autoloads from my-magit.el
+
+(autoload 'magit-setup "my-magit" "\
+
+
+\(fn)" nil nil)
+
+;;;***
+
 ;;;### (autoloads nil "my-markdown-mode" "my-markdown-mode.el" (22494
 ;;;;;;  48608 194866 259000))
 ;;; Generated autoloads from my-markdown-mode.el
@@ -183,14 +203,27 @@ number of logical processing unit on this system")
 
 ;;;***
 
-;;;### (autoloads nil "my-python-mode" "my-python-mode.el" (22406
-;;;;;;  3853 785010 817000))
+;;;### (autoloads nil "my-python-mode" "my-python-mode.el" (23202
+;;;;;;  33256 141177 397000))
 ;;; Generated autoloads from my-python-mode.el
 
 (autoload 'python-mode-setup "my-python-mode" "\
 
 
 \(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil "my-python-project" "my-python-project.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from my-python-project.el
+
+(autoload 'python-project "my-python-project" "\
+
+
+\(fn BUILDPATH BUILDCMD)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-python-project" '("python-project-fi")))
 
 ;;;***
 
@@ -311,13 +344,12 @@ This must be bound to a button-down mouse event.
 ;;;***
 
 ;;;### (autoloads nil nil ("flx.el" "my-elisp.el" "my-lisp-mode.el"
-;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (23060
-;;;;;;  1597 130637 521000))
+;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (0 0 0
+;;;;;;  0))
 
 ;;;***
 
-;;;### (autoloads nil "my-c-mode" "my-c-mode.el" (22487 52083 431370
-;;;;;;  152000))
+;;;### (autoloads nil "my-c-mode" "my-c-mode.el" (0 0 0 0))
 ;;; Generated autoloads from my-c-mode.el
 
 (autoload 'sandbox "my-c-mode" "\
@@ -329,6 +361,8 @@ Opens a C++ sandbox in current window.
 
 
 \(fn)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-c-mode" '("c-" "my-gdb" "insert-")))
 
 ;;;***
 

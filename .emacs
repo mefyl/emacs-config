@@ -31,6 +31,7 @@
 (add-hook 'sh-mode-hook 'sh-mode-setup)
 (add-hook 'yaml-mode-hook 'yaml-mode-setup)
 (add-hook 'go-mode-hook 'go-mode-setup)
+(add-hook 'magit-mode-hook 'magit-setup)
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
