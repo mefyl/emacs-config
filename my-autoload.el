@@ -1,5 +1,58 @@
 ;;;***
 
+;;;### (autoloads nil "elisp-format" "elisp-format.el" (0 0 0 0))
+;;; Generated autoloads from elisp-format.el
+
+(autoload 'elisp-format-region "elisp-format" "\
+Format current region or buffer.
+This function will format region from START to END.
+Or try to format `defun' around point.
+
+\(fn &optional START END)" t nil)
+
+(autoload 'elisp-format-buffer "elisp-format" "\
+Format current buffer.
+
+\(fn)" t nil)
+
+(autoload 'elisp-format-file "elisp-format" "\
+Format file with FILENAME.
+
+\(fn FILENAME)" t nil)
+
+(autoload 'elisp-format-file-batch "elisp-format" "\
+Format elisp FILENAME.
+But instead in `batch-mode'.
+If SURPRESS-POPUP-WINDOW is non-nil, don't show output window.
+
+\(fn FILENAME &optional SURPRESS-POPUP-WINDOW)" t nil)
+
+(autoload 'elisp-format-directory "elisp-format" "\
+Format recursive elisp files under DIR.
+
+\(fn DIR)" t nil)
+
+(autoload 'elisp-format-directory-batch "elisp-format" "\
+Format recursive elisp files under DIR.
+But instead in `batch-mode'.
+If SURPRESS-POPUP-WINDOW is non-nil, don't show output window.
+
+\(fn DIR &optional SURPRESS-POPUP-WINDOW)" t nil)
+
+(autoload 'elisp-format-dired-mark-files "elisp-format" "\
+Format dired mark files.
+
+\(fn)" t nil)
+
+(autoload 'elisp-format-library "elisp-format" "\
+Format LIBRARY.
+
+\(fn LIBRARY)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "elisp-format" '("elisp-format-")))
+
+;;;***
+
 ;;;### (autoloads nil "elle-log-mode" "elle-log-mode.el" (22406 3853
 ;;;;;;  784010 817000))
 ;;; Generated autoloads from elle-log-mode.el
@@ -109,7 +162,14 @@ Default MODIFIER is 'meta.
 (defconst system-cores-logical (string-to-number (shell-command-to-string "nproc")) "\
 number of logical processing unit on this system")
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-compile" '("my-compilation-hook")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-compile" '("my-compilation-hook" "find-" "compilation-files")))
+
+;;;***
+
+;;;### (autoloads nil "my-elisp" "my-elisp.el" (0 0 0 0))
+;;; Generated autoloads from my-elisp.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-elisp" '("filter" "rbegin" "current-file-name" "cwd" "buffer-empty-p")))
 
 ;;;***
 
@@ -140,7 +200,14 @@ you save any file, kind of defeating the point of autoloading.
 
 \(fn)" nil nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-go-mode" '(#("goimports" 0 9 (face font-lock-function-name-face fontified t)))))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-go-mode" '("goimports")))
+
+;;;***
+
+;;;### (autoloads nil "my-helpers" "my-helpers.el" (0 0 0 0))
+;;; Generated autoloads from my-helpers.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-helpers" '("find-next-file")))
 
 ;;;***
 
@@ -168,6 +235,16 @@ you save any file, kind of defeating the point of autoloading.
 
 
 \(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads nil "my-lisp-mode" "my-lisp-mode.el" (0 0 0 0))
+;;; Generated autoloads from my-lisp-mode.el
+
+(autoload 'lisp-mode-setup "my-lisp-mode" "\
+
+
+\(fn)" nil nil)
 
 ;;;***
 
@@ -203,8 +280,8 @@ you save any file, kind of defeating the point of autoloading.
 
 ;;;***
 
-;;;### (autoloads nil "my-python-mode" "my-python-mode.el" (23202
-;;;;;;  33256 141177 397000))
+;;;### (autoloads nil "my-python-mode" "my-python-mode.el" (0 0 0
+;;;;;;  0))
 ;;; Generated autoloads from my-python-mode.el
 
 (autoload 'python-mode-setup "my-python-mode" "\
@@ -257,6 +334,19 @@ you save any file, kind of defeating the point of autoloading.
 
 
 \(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil "my-tuareg-mode" "my-tuareg-mode.el" (0 0 0
+;;;;;;  0))
+;;; Generated autoloads from my-tuareg-mode.el
+
+(autoload 'tuareg-mode-setup "my-tuareg-mode" "\
+
+
+\(fn)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-tuareg-mode" '(#("tuareg-switch-mli-ml" 0 20 (face font-lock-function-name-face fontified nil)))))
 
 ;;;***
 
@@ -343,9 +433,8 @@ This must be bound to a button-down mouse event.
 
 ;;;***
 
-;;;### (autoloads nil nil ("flx.el" "my-elisp.el" "my-lisp-mode.el"
-;;;;;;  "my-shebang.el" "rebox.el" "sgml.el" "tuareg.el") (0 0 0
-;;;;;;  0))
+;;;### (autoloads nil nil ("flx.el" "my-shebang.el" "rebox.el" "sgml.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 
