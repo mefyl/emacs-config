@@ -118,6 +118,9 @@
 
 ;; Debug output
 
+(defconst c-debug-prefix "std::cerr << \"")
+(defconst c-debug-suffix "\" << std::endl;")
+
 (defun c-insert-debug (&optional msg)
   (interactive)
   (when (not (looking-at "\\W*$"))
@@ -125,8 +128,9 @@
     (insert "\n")
     (line-move -1))
   (c-indent-line)
-  (insert "std::cerr << \"\" << std::endl;")
-  (backward-char 15))
+  (insert c-debug-prefix)
+  (save-excursion
+    (insert c-debug-suffix)))
 
 ;; Blocks
 
