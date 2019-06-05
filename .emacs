@@ -22,7 +22,6 @@
 (set 'generated-autoload-file (concat conf-dir "my-autoload.el"))
 (require 'my-autoload)
 (require 'my-elisp)
-(require 'my-lisp-mode)
 
 ;; Modes setup
 (add-hook 'c++-mode-hook 'c++-mode-setup)
@@ -32,6 +31,7 @@
 (add-hook 'yaml-mode-hook 'yaml-mode-setup)
 (add-hook 'go-mode-hook 'go-mode-setup)
 (add-hook 'magit-mode-hook 'magit-setup)
+(eval-after-load "lisp-mode" '(lisp-mode-setup))
 
 (defconst has-gnuserv
   (fboundp 'gnuserv-start)
