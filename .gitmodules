@@ -1,0 +1,3 @@
+[submodule "elisp-format"]
+	path = elisp-format
+	url = https://github.com/Yuki-Inoue/elisp-format
