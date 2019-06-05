@@ -31,6 +31,7 @@
 (add-hook 'yaml-mode-hook 'yaml-mode-setup)
 (add-hook 'go-mode-hook 'go-mode-setup)
 (add-hook 'magit-mode-hook 'magit-setup)
+(add-hook 'tuareg-load-hook 'tuareg-mode-setup)
 (eval-after-load "lisp-mode" '(lisp-mode-setup))
 
 (defconst has-gnuserv
