@@ -12,7 +12,9 @@
                                  (control c)] 'comment-region)
 
   ;; I reserve those to windmove
+  (define-key markdown-mode-map [(meta down)] nil)
   (define-key markdown-mode-map [(meta left)] nil)
-  (define-key markdown-mode-map [(meta right)] nil))
+  (define-key markdown-mode-map [(meta right)] nil)
+  (define-key markdown-mode-map [(meta up)] nil))
 
 (provide 'my-markdown-mode)
