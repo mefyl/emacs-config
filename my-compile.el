@@ -1,6 +1,6 @@
 (defvar compilation-files
   '(("drakefile" . (lambda (p)
-                     (concat "drake -C " p)))
+                     (concat "drake " p " --workdir " p "/_build")))
     ("dune-project" . (lambda (p)
                         (concat "dune build --root " p)))
     ("Makefile" . (lambda (p)
