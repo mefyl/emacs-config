@@ -6,8 +6,7 @@
   ;; ------ ;;
   (require 'elisp-format)
   (add-hook 'before-save-hook (lambda ()
-                                (when (and (derived-mode-p 'emacs-lisp-mode)
-                                           (not (string-equal (buffer-name) "ido.last")))
+                                (when (derived-mode-p 'emacs-lisp-mode)
                                   (elisp-format-buffer))))
 
   ;; ------------- ;;
