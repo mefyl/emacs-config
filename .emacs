@@ -352,14 +352,6 @@
 
 (setq-default gdb-many-windows t)
 
-;; Recognize test suite output
-
-(require 'compile)
-(add-to-list 'compilation-error-regexp-alist '("^\\(PASS\\|SKIP\\|XFAIL\\|TFAIL\\): \\(.*\\)$" 2 ()
-                                               () 0 2))
-(add-to-list 'compilation-error-regexp-alist '("^\\(FAIL\\|XPASS\\): \\(.*\\)$" 2 ()
-                                               () 2 2))
-
 ;; Save and restore window layout
 
 (defvar winconf-ring ())

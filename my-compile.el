@@ -1,3 +1,5 @@
+(require 'compile)
+
 (defvar compilation-files
   '(("drakefile" . (lambda (p)
                      (concat "drake " p " --workdir " p "/_build")))
@@ -40,6 +42,13 @@
                                             (switch-to-buffer "*compilation*")
                                             (shrink-window (- h compilation-window-height)))))))
 (add-hook 'compilation-mode-hook 'my-compilation-hook)
+
+
+;; Recognize test suite output
+(add-to-list 'compilation-error-regexp-alist '("^\\(PASS\\|SKIP\\|XFAIL\\|TFAIL\\): \\(.*\\)$" 2 ()
+                                               () 0 2))
+(add-to-list 'compilation-error-regexp-alist '("^\\(FAIL\\|XPASS\\): \\(.*\\)$" 2 ()
+                                               () 2 2))
 
 ;;;###autoload
 (defconst system-cores-logical (string-to-number (shell-command-to-string "nproc"))
