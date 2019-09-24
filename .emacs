@@ -274,14 +274,6 @@
                                            (select-frame f)
                                            (configure-frame)))
 
-;; Lisp mode
-
-(require 'lisp-mode)
-
-(define-key lisp-mode-shared-map [(control c)
-                                  (control c)] 'comment-region)
-                                        ; comment
-
 ;; Conf mode
 
 (require 'conf-mode)

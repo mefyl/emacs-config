@@ -17,6 +17,8 @@
   ;; -------- ;;
   ;; Bindings ;;
   ;; -------- ;;
-  (define-key lisp-mode-shared-map [(meta q)] 'my-rebox-comment))
+  (define-key lisp-mode-shared-map [(meta q)] 'my-rebox-comment)
+  (define-key lisp-mode-shared-map [(control c)
+                                    (control c)] 'comment-region))
 
 (provide 'my-lisp-mode)
