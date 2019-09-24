@@ -219,23 +219,6 @@
 (define-key lisp-mode-map [(control c)
                            (control f)] 'insert-fixme) ; insert fixme
 
-;; BINDINGS :: C/C++
-
-;; ;; BINDINGS :: C/C++ :: XRefactory
-
-;; (define-key
-;;   c-mode-base-map
-;;   [(control c) (d)]
-;;   'xref-push-and-goto-definition)                       ; goto definition
-;; (define-key
-;;   c-mode-base-map
-;;   [(control c) (b)]
-;;   'xref-pop-and-return)                                 ; go back
-;; (define-key
-;;   c-mode-base-map
-;;   [C-return]
-;;   'xref-completion)                                     ; complete
-
 ;; BINDINGS :: misc
 
 (global-set-key [(meta =)] 'stat-region)
