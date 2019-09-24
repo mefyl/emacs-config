@@ -7,27 +7,35 @@
 ;;;###autoload
 (defun tuareg-mode-setup ()
 
-  ;; OPAM
+  ;; Add OPAM files to path.
   (let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
-    (when (and opam-share (file-directory-p opam-share))
-      ;; Register Merlin
+    (when (and opam-share
+               (file-directory-p opam-share))
       (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))))
 
   ;; Merlin
-  (autoload 'merlin-mode "merlin" nil t nil)
-  (add-hook 'tuareg-mode-hook 'merlin-mode t)
-  (add-hook 'caml-mode-hook 'merlin-mode t)
-  (setq merlin-command 'opam) ;; Use opam switch to lookup ocamlmerlin binary
-  (require 'auto-complete)
-  (setq merlin-use-auto-complete-mode 'easy)
+  (if
+      (require 'merlin nil 'noerror)
+      (progn (add-hook 'tuareg-mode-hook 'merlin-mode t)
+             (add-hook 'caml-mode-hook 'merlin-mode t)
+             (setq merlin-command 'opam) ;; Use opam switch to lookup ocamlmerlin binary
+             (require 'auto-complete)
+             (setq merlin-use-auto-complete-mode 'easy))
+    (warn
+     "merlin not installed"))
 
-  ;; Format
-  (require 'ocamlformat)
-  (add-hook 'before-save-hook 'ocamlformat-before-save)
+  ;; Ocamlformat
+  (if
+      (require 'ocamlformat nil 'noerror)
+      (add-hook 'before-save-hook 'ocamlformat-before-save)
+    (warn
+     "ocamlformat not installed"))
 
   ;; Bindings
-  (define-key tuareg-mode-map [(control c) (control c)] 'comment-region)
-  (define-key tuareg-mode-map [(control c) (control f)] 'insert-fixme)
+  (define-key tuareg-mode-map [(control c)
+                               (control c)] 'comment-region)
+  (define-key tuareg-mode-map [(control c)
+                               (control f)] 'insert-fixme)
   (define-key tuareg-mode-map [(control c) ?w] 'tuareg-switch-mli-ml)
   (define-key tuareg-mode-map [(meta /)] 'auto-complete)
   (define-key tuareg-mode-map [(meta .)] 'merlin-locate))
