@@ -6,7 +6,7 @@
   ;; ------ ;;
   (require 'elisp-format)
   (add-hook 'before-save-hook (lambda ()
-                                (when (derived-mode-p 'emacs-lisp-mode)
+                                (when (derived-mode-p 'emacs-lisp-mode 'lisp-mode)
                                   (elisp-format-buffer))))
 
   ;; ------------- ;;
