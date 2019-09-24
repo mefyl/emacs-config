@@ -166,6 +166,16 @@ number of logical processing unit on this system")
 
 ;;;***
 
+;;;### (autoloads nil "my-conf-mode" "my-conf-mode.el" (0 0 0 0))
+;;; Generated autoloads from my-conf-mode.el
+
+(autoload 'conf-mode-setup "my-conf-mode" "\
+
+
+\(fn)" nil nil)
+
+;;;***
+
 ;;;### (autoloads nil "my-elisp" "my-elisp.el" (0 0 0 0))
 ;;; Generated autoloads from my-elisp.el
 
@@ -269,8 +279,8 @@ you save any file, kind of defeating the point of autoloading.
 
 ;;;***
 
-;;;### (autoloads nil "my-markdown-mode" "my-markdown-mode.el" (22494
-;;;;;;  48608 194866 259000))
+;;;### (autoloads nil "my-markdown-mode" "my-markdown-mode.el" (0
+;;;;;;  0 0 0))
 ;;; Generated autoloads from my-markdown-mode.el
 
 (autoload 'markdown-mode-setup "my-markdown-mode" "\
@@ -346,7 +356,7 @@ you save any file, kind of defeating the point of autoloading.
 
 \(fn)" nil nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-tuareg-mode" '(#("tuareg-switch-mli-ml" 0 20 (face font-lock-function-name-face fontified nil)))))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-tuareg-mode" '("tuareg-switch-mli-ml")))
 
 ;;;***
 
@@ -451,7 +461,7 @@ Opens a C++ sandbox in current window.
 
 \(fn)" nil nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-c-mode" '("c-" "my-gdb" "insert-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "my-c-mode" '(#("c-" 0 2 (fontified nil)) #("my-gdb" 0 6 (fontified nil)) #("insert-" 0 7 (fontified nil)))))
 
 ;;;***
 

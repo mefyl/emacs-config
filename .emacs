@@ -24,6 +24,7 @@
 (require 'my-elisp)
 
 ;; Modes setup
+(add-hook 'conf-mode-hook 'conf-mode-setup)
 (add-hook 'c++-mode-hook 'c++-mode-setup)
 (add-hook 'log-view-mode-hook 'my-log-view-mode-setup)
 (add-hook 'python-mode-hook 'python-mode-setup)
@@ -256,13 +257,6 @@
 (add-to-list 'after-make-frame-functions (lambda (f)
                                            (select-frame f)
                                            (configure-frame)))
-
-;; Conf mode
-
-(require 'conf-mode)
-
-(define-key conf-mode-map [(control c)
-                           (control c)] 'comment-region) ; comment
 
 ;; Compilation
 
