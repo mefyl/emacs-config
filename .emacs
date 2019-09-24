@@ -170,6 +170,7 @@
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
 (add-to-list 'auto-mode-alist '("drake$" . python-mode))
 (add-to-list 'auto-mode-alist '("drakefile$" . python-mode))
+(add-to-list 'auto-mode-alist '("dune\\(-project\\)?$" . lisp-mode))
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
 
 ;; Markdown
