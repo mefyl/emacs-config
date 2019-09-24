@@ -34,8 +34,7 @@
 (add-hook 'tuareg-load-hook 'tuareg-mode-setup)
 (eval-after-load "lisp-mode" '(lisp-mode-setup))
 
-(defconst has-gnuserv
-  (fboundp 'gnuserv-start)
+(defconst has-gnuserv (fboundp 'gnuserv-start)
   "Whether gnuserv is available")
 
 ;; Version detection
@@ -57,98 +56,77 @@
 ;; Edition
 
 (defun count-word (start end)
-  (let ((begin (min start end))(end (max start end)))
-    (save-excursion
-      (goto-char begin)
-      (re-search-forward "\\W*") ; skip blank
-      (setq i 0)
-      (while (< (point) end)
-        (re-search-forward "\\w+")
-        (when (<= (point) end)
-          (setq i (+ 1 i)))
-        (re-search-forward "\\W*"))))
+  (let ((begin (min start end))
+        (end (max start end)))
+    (save-excursion (goto-char begin)
+                    (re-search-forward "\\W*") ; skip blank
+                    (setq i 0)
+                    (while (< (point) end)
+                      (re-search-forward "\\w+")
+                      (when (<= (point) end)
+                        (setq i (+ 1 i)))
+                      (re-search-forward "\\W*"))))
   i)
 
 (defun stat-region (start end)
   (interactive "r")
-  (let
-      ((words (count-word start end)) (lines (count-lines start end)))
-    (message
-     (concat "Lines: "
-             (int-to-string lines)
-             "  Words: "
-             (int-to-string words)))
-    )
-  )
+  (let ((words (count-word start end))
+        (lines (count-lines start end)))
+    (message (concat "Lines: " (int-to-string lines) "  Words: " (int-to-string words)))))
 
 (defun ruby-command (cmd &optional output-buffer error-buffer)
   "Like shell-command, but using ruby."
-  (interactive (list (read-from-minibuffer "Ruby command: "
-					   nil nil nil 'ruby-command-history)
-		     current-prefix-arg
-		     shell-command-default-error-buffer))
+  (interactive (list (read-from-minibuffer "Ruby command: " nil nil nil 'ruby-command-history)
+                     current-prefix-arg shell-command-default-error-buffer))
   (shell-command (concat "ruby -e '" cmd "'") output-buffer error-buffer))
 
 (defun python-command (cmd &optional output-buffer error-buffer)
   "Like shell-command, but using python."
-  (interactive (list (read-from-minibuffer "Python command: "
-					   nil nil nil 'python-command-history)
-		     current-prefix-arg
-		     shell-command-default-error-buffer))
-  (shell-command
-   (concat "python -c '" (replace-regexp-in-string "'" "'\\\\''" cmd) "'")
-   output-buffer error-buffer))
+  (interactive (list (read-from-minibuffer "Python command: " nil nil nil 'python-command-history)
+                     current-prefix-arg shell-command-default-error-buffer))
+  (shell-command (concat "python -c '" (replace-regexp-in-string "'" "'\\\\''" cmd) "'")
+                 output-buffer error-buffer))
 
 ;; OPTIONS
 
-(setq inhibit-startup-message t)        ; don't show the GNU splash screen
-(setq frame-title-format "%b")          ; titlebar shows buffer's name
-(global-font-lock-mode t)               ; syntax highlighting
+(setq inhibit-startup-message t)    ; don't show the GNU splash screen
+(setq frame-title-format "%b")      ; titlebar shows buffer's name
+(global-font-lock-mode t)           ; syntax highlighting
 (setq font-lock-maximum-decoration t)   ; max decoration for all modes
-;(setq transient-mark-mode 't)          ; highlight selection
 (setq line-number-mode 't)              ; line number
 (setq column-number-mode 't)            ; column number
 (when (display-graphic-p)
-  (progn
-    (scroll-bar-mode -1)                ; no scroll bar
-    (menu-bar-mode -1)                  ; no menu bar
-    (tool-bar-mode -1)                  ; no tool bar
-    (mouse-wheel-mode t)))              ; enable mouse wheel
+  (progn (scroll-bar-mode -1)           ; no scroll bar
+         (menu-bar-mode -1)             ; no menu bar
+         (tool-bar-mode -1)             ; no tool bar
+         (mouse-wheel-mode t)))         ; enable mouse wheel
 
 
-(setq delete-auto-save-files t)         ; delete unnecessary autosave files
-(setq delete-old-versions t)            ; delete oldversion file
+(setq delete-auto-save-files t)    ; delete unnecessary autosave files
+(setq delete-old-versions t)       ; delete oldversion file
 (setq normal-erase-is-backspace-mode t) ; make delete work as it should
-(fset 'yes-or-no-p 'y-or-n-p)           ; 'y or n' instead of 'yes or no'
-(setq default-major-mode 'text-mode)    ; change default major mode to text
-(setq ring-bell-function 'ignore)       ; turn the alarm totally off
-(setq make-backup-files nil)            ; no backupfile
-
-;; FIXME: wanted 99.9% of the time, but can cause your death 0.1% of
-;; the time =). Todo: save buffer before reverting
-;(global-auto-revert-mode t)            ; auto revert modified files
-
-;(pc-selection-mode)                    ; selection with shift
-(auto-image-file-mode)                  ; to see picture in emacs
-;(dynamic-completion-mode)              ; dynamic completion
-(show-paren-mode t)			; match parenthesis
-(setq-default indent-tabs-mode nil)	; don't use fucking tabs to indent
+(fset 'yes-or-no-p 'y-or-n-p)        ; 'y or n' instead of 'yes or no'
+(setq default-major-mode 'text-mode) ; change default major mode to text
+(setq ring-bell-function 'ignore)    ; turn the alarm totally off
+(setq make-backup-files nil)         ; no backupfile
+(auto-image-file-mode)               ; show picture in emacs
+(show-paren-mode t)                  ; match parenthesis
+(setq-default indent-tabs-mode nil) ; don't use fucking tabs to indent
 
 ;; HOOKS
 
-; Delete trailing whitespaces on save
-(add-hook
- 'write-file-hooks
- (lambda () (when (not (eq major-mode 'mail-mode))
-              (delete-trailing-whitespace))))
+;; Delete trailing whitespaces on save
+(add-hook 'write-file-hooks (lambda ()
+                              (when (not (eq major-mode 'mail-mode))
+                                (delete-trailing-whitespace))))
 
-(add-hook 'ruby-mode-hook
-	  (lambda ()
-            (insert-shebang-if-empty "/usr/bin/ruby")))
+(add-hook 'ruby-mode-hook (lambda ()
+                            (insert-shebang-if-empty "/usr/bin/ruby")))
 
 
-; Start code folding mode in C/C++ mode
-(add-hook 'c-mode-common-hook (lambda () (hs-minor-mode 1)))
+;; Start code folding mode in C/C++ mode
+(add-hook 'c-mode-common-hook (lambda ()
+                                (hs-minor-mode 1)))
 
 ;; file extensions
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . change-log-mode))
@@ -186,100 +164,60 @@
 
 (defconst has-ido (>= emacs-major 22))
 
-(when has-ido
-  (ido-mode t)
-  ;; tab means tab, i.e. complete. Not "open this file", stupid.
-  (setq ido-confirm-unique-completion t)
-  ;; If the file doesn't exist, do not try to invent one from a
-  ;; transplanar directory. I just want a new file.
-  (setq ido-auto-merge-work-directories-length -1)
-  ;; Don't switch to GDB-mode buffers
-  (add-to-list 'ido-ignore-buffers "locals")
-  (flx-ido-mode)
-  ;; disable ido faces to see flx highlights.
-  ;; (setq ido-use-faces nil)
-)
+(when has-ido (ido-mode t)
+      ;; tab means tab, i.e. complete. Not "open this file", stupid.
+      (setq ido-confirm-unique-completion t)
+      ;; If the file doesn't exist, do not try to invent one from a
+      ;; transplanar directory. I just want a new file.
+      (setq ido-auto-merge-work-directories-length -1)
+      ;; Don't switch to GDB-mode buffers
+      (add-to-list 'ido-ignore-buffers "locals")
+      (flx-ido-mode)
+      ;; disable ido faces to see flx highlights.
+      ;; (setq ido-use-faces nil)
+      )
 
 ;; GNUSERV
 
-(when has-gnuserv
-  (gnuserv-start)
-;  (global-set-key [(control x) (control c)] 'gnuserv-close-session)
-  )
+(when has-gnuserv (gnuserv-start))
 
 ;; BINDINGS
 
 ;; BINDINGS :: windows
 
 (global-unset-key [(control s)])
-(global-set-key [(control s) (v)] 'split-window-horizontally)
-(global-set-key [(control s) (h)] 'split-window-vertically)
-(global-set-key [(control s) (d)] 'delete-window)
-(global-set-key [(control s) (o)] 'delete-other-windows)
+(global-set-key [(control s)
+                 (v)] 'split-window-horizontally)
+(global-set-key [(control s)
+                 (h)] 'split-window-vertically)
+(global-set-key [(control s)
+                 (d)] 'delete-window)
+(global-set-key [(control s)
+                 (o)] 'delete-other-windows)
 
 ;; BINDINGS :: ido
 
-(when has-ido
-  (global-set-key [(control b)] 'ido-switch-buffer)
-  (define-key ido-file-completion-map [(control d)] 'ido-make-directory))
+(when has-ido (global-set-key [(control b)] 'ido-switch-buffer)
+      (define-key ido-file-completion-map [(control d)] 'ido-make-directory))
 
 ;; BINDINGS :: isearch
-(global-set-key [(control f)] 'isearch-forward-regexp)  ; search regexp
-(global-set-key [(control r)] 'query-replace-regexp)    ; replace regexp
-(define-key
-  isearch-mode-map
-  [(control n)]
-  'isearch-repeat-forward)                              ; next occurence
-(define-key
-  isearch-mode-map
-  [(control p)]
-  'isearch-repeat-backward)                             ; previous occurence
-(define-key
-  isearch-mode-map
-  [(control z)]
-  'isearch-cancel)                                      ; quit and go back to start point
-(define-key
-  isearch-mode-map
-  [(control f)]
-  'isearch-exit)                                        ; abort
-(define-key
-  isearch-mode-map
-  [(control r)]
-  'isearch-query-replace)                               ; switch to replace mode
-(define-key
-  isearch-mode-map
-  [S-insert]
-  'isearch-yank-kill)                                   ; paste
-(define-key
-  isearch-mode-map
-  [(control e)]
-  'isearch-toggle-regexp)                               ; toggle regexp
-(define-key
-  isearch-mode-map
-  [(control l)]
-  'isearch-yank-line)                                   ; yank line from buffer
-(define-key
-  isearch-mode-map
-  [(control w)]
-  'isearch-yank-word)                                   ; yank word from buffer
-(define-key
-  isearch-mode-map
-  [(control c)]
-  'isearch-yank-char)                                   ; yank char from buffer
+(global-set-key [(control f)] 'isearch-forward-regexp) ; search regexp
+(global-set-key [(control r)] 'query-replace-regexp) ; replace regexp
+(define-key isearch-mode-map [(control n)] 'isearch-repeat-forward) ; next occurence
+(define-key isearch-mode-map [(control p)] 'isearch-repeat-backward) ; previous occurence
+(define-key isearch-mode-map [(control z)] 'isearch-cancel) ; quit and go back to start point
+(define-key isearch-mode-map [(control f)] 'isearch-exit)   ; abort
+(define-key isearch-mode-map [(control r)] 'isearch-query-replace) ; switch to replace mode
+(define-key isearch-mode-map [S-insert] 'isearch-yank-kill) ; paste
+(define-key isearch-mode-map [(control e)] 'isearch-toggle-regexp) ; toggle regexp
+(define-key isearch-mode-map [(control l)] 'isearch-yank-line) ; yank line from buffer
+(define-key isearch-mode-map [(control w)] 'isearch-yank-word) ; yank word from buffer
+(define-key isearch-mode-map [(control c)] 'isearch-yank-char) ; yank char from buffer
 
 ;; BINDINGS :: Lisp
 
-(define-key
-  lisp-mode-map
-  [(control c) (control f)]
-  'insert-fixme)                                      ; insert fixme
-
-;; BINDINGS :: Ruby
-
-;(define-key
-;  ruby-mode-map
-;  [(control c) (control f)]
-;  'insert-fixme)                                      ; insert fixme
+(define-key lisp-mode-map [(control c)
+                           (control f)] 'insert-fixme) ; insert fixme
 
 ;; BINDINGS :: C/C++
 
@@ -300,29 +238,30 @@
 
 ;; BINDINGS :: misc
 
-(global-set-key [(meta =)]
-                'stat-region)
+(global-set-key [(meta =)] 'stat-region)
 (if (display-graphic-p)
-    (global-set-key [(control z)] 'undo)                ; undo only in graphic mode
-)
-(global-set-key [(control a)] 'mark-whole-buffer)       ; select whole buffer
-(global-set-key [(control return)] 'dabbrev-expand)     ; auto completion
-(global-set-key [C-home] 'beginning-of-buffer)          ; go to the beginning of buffer
-(global-set-key [C-end] 'end-of-buffer)                 ; go to the end of buffer
-(global-set-key [(meta g)] 'goto-line)                  ; goto line #
-(global-set-key [M-left] 'windmove-left)                ; move to left windnow
-(global-set-key [M-right] 'windmove-right)              ; move to right window
-(global-set-key [M-up] 'windmove-up)                    ; move to upper window
+    (global-set-key [(control z)] 'undo) ; undo only in graphic mode
+  )
+(global-set-key [(control a)] 'mark-whole-buffer) ; select whole buffer
+(global-set-key [(control return)] 'dabbrev-expand) ; auto completion
+(global-set-key [C-home] 'beginning-of-buffer) ; go to the beginning of buffer
+(global-set-key [C-end] 'end-of-buffer)    ; go to the end of buffer
+(global-set-key [(meta g)] 'goto-line)     ; goto line #
+(global-set-key [M-left] 'windmove-left)   ; move to left windnow
+(global-set-key [M-right] 'windmove-right) ; move to right window
+(global-set-key [M-up] 'windmove-up)       ; move to upper window
 (global-set-key [M-down] 'windmove-down)
-(global-set-key [(control c) (c)] 'my-recompile)
-(global-set-key [(control c) (e)] 'next-error)
-(global-set-key [(control tab)] 'other-window)          ; Ctrl-Tab = Next buffer
+(global-set-key [(control c)
+                 (c)] 'my-recompile)
+(global-set-key [(control c)
+                 (e)] 'next-error)
+(global-set-key [(control tab)] 'other-window) ; Ctrl-Tab = Next buffer
 (global-set-key [C-S-iso-lefttab]
-                '(lambda () (interactive)
-                   (other-window -1)))                  ; Ctrl-Shift-Tab = Previous buffer
-(global-set-key [(control delete)]
-                'kill-word)                             ; kill word forward
-(global-set-key [(meta ~)] 'python-command)             ; run python command
+                '(lambda ()
+                   (interactive)
+                   (other-window -1))) ; Ctrl-Shift-Tab = Previous buffer
+(global-set-key [(control delete)] 'kill-word) ; kill word forward
+(global-set-key [(meta ~)] 'python-command)    ; run python command
 
 ;; COLORS
 
@@ -331,26 +270,24 @@
   (set-foreground-color "white")
   (set-cursor-color "Orangered"))
 (configure-frame)
-(add-to-list 'after-make-frame-functions
-             (lambda (f) (select-frame f) (configure-frame)))
+(add-to-list 'after-make-frame-functions (lambda (f)
+                                           (select-frame f)
+                                           (configure-frame)))
 
 ;; Lisp mode
 
 (require 'lisp-mode)
 
-(define-key
-  lisp-mode-shared-map
-  [(control c) (control c)]
-  'comment-region)                                      ; comment
+(define-key lisp-mode-shared-map [(control c)
+                                  (control c)] 'comment-region)
+                                        ; comment
 
 ;; Conf mode
 
 (require 'conf-mode)
 
-(define-key
-  conf-mode-map
-  [(control c) (control c)]
-  'comment-region)                                      ; comment
+(define-key conf-mode-map [(control c)
+                           (control c)] 'comment-region) ; comment
 
 ;; Compilation
 
@@ -406,14 +343,15 @@
 
 
 
-(when has-ido
-  (custom-set-variables
-   '(ido-auto-merge-work-directories-length -1)
-   '(ido-confirm-unique-completion t)
-   '(ido-create-new-buffer (quote always))
-   '(ido-everywhere t)
-   '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'" "\\`\\*stack frames of.*\\*\\'" "\\`\\*gud\\*\\'" "\\`\\*locals of.*\\*\\'" "\\` ")))
-   '(ido-mode (quote both) nil (ido))))
+(when has-ido (custom-set-variables '(ido-auto-merge-work-directories-length -1)
+                                    '(ido-confirm-unique-completion t)
+                                    '(ido-create-new-buffer (quote always))
+                                    '(ido-everywhere t)
+                                    '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'"
+                                                                 "\\`\\*stack frames of.*\\*\\'"
+                                                                 "\\`\\*gud\\*\\'"
+                                                                 "\\`\\*locals of.*\\*\\'" "\\` ")))
+                                    '(ido-mode (quote both) nil (ido))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -428,7 +366,8 @@
  '(ido-confirm-unique-completion t)
  '(ido-create-new-buffer (quote always))
  '(ido-everywhere t)
- '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'" "\\`\\*stack frames of.*\\*\\'" "\\`\\*gud\\*\\'" "\\`\\*locals of.*\\*\\'" "\\` ")))
+ '(ido-ignore-buffers (quote ("\\`\\*breakpoints of.*\\*\\'" "\\`\\*stack frames of.*\\*\\'"
+                              "\\`\\*gud\\*\\'" "\\`\\*locals of.*\\*\\'" "\\` ")))
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(line-move-visual nil)
@@ -447,11 +386,10 @@
 ;; Recognize test suite output
 
 (require 'compile)
-(add-to-list 'compilation-error-regexp-alist '("^\\(PASS\\|SKIP\\|XFAIL\\|TFAIL\\): \\(.*\\)$" 2 () () 0 2))
-(add-to-list 'compilation-error-regexp-alist '("^\\(FAIL\\|XPASS\\): \\(.*\\)$" 2 () () 2 2))
-
-;(require 'flymake)
-;(add-hook 'find-file-hooks 'flymake-find-file-hook)
+(add-to-list 'compilation-error-regexp-alist '("^\\(PASS\\|SKIP\\|XFAIL\\|TFAIL\\): \\(.*\\)$" 2 ()
+                                               () 0 2))
+(add-to-list 'compilation-error-regexp-alist '("^\\(FAIL\\|XPASS\\): \\(.*\\)$" 2 ()
+                                               () 2 2))
 
 ;; Save and restore window layout
 
@@ -492,11 +430,24 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-diff-add ((((class color) (background dark)) (:foreground "green"))))
- '(magit-diff-file-header ((t (:inherit magit-header :weight bold :height 1.6))))
- '(magit-diff-hunk-header ((t (:inherit magit-header :weight bold :height 1.3))))
- '(magit-diff-none ((t (:foreground "grey80"))))
+ '(magit-diff-add ((((class color)
+                     (background dark))
+                    (:foreground "green"))))
+ '(magit-diff-file-header ((t
+                            (:inherit magit-header
+                                      :weight bold
+                                      :height 1.6))))
+ '(magit-diff-hunk-header ((t
+                            (:inherit magit-header
+                                      :weight bold
+                                      :height 1.3))))
+ '(magit-diff-none ((t
+                     (:foreground "grey80"))))
  '(magit-header ((t nil)))
- '(magit-section-title ((t (:inherit magit-header :underline t :weight bold :height 2.0)))))
+ '(magit-section-title ((t
+                         (:inherit magit-header
+                                   :underline t
+                                   :weight bold
+                                   :height 2.0)))))
 
 (setq x-alt-keysym 'meta)
