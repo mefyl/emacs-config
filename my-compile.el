@@ -34,14 +34,25 @@
           (message "No compilation command found.")))
     (recompile)))
 
-(defun my-compilation-hook ()
-  (when (not (get-buffer-window "*compilation*"))
-    (save-selected-window (save-excursion (let* ((w (split-window-vertically))
-                                                 (h (window-height w)))
-                                            (select-window w)
-                                            (switch-to-buffer "*compilation*")
-                                            (shrink-window (- h compilation-window-height)))))))
-(add-hook 'compilation-mode-hook 'my-compilation-hook)
+(defun show-compilation-buffer ()
+  "Show compilation buffer, opening a new window if needed"
+  (let ((window (get-buffer-window "*compilation*" t)))
+    (message "DO IT")
+    (message "show-compilation-buffer")
+    (if window window (save-selected-window (save-excursion (let* ((w (split-window-vertically))
+                                                                   (h (window-height w)))
+                                                              (select-window w)
+                                                              (switch-to-buffer "*compilation*")
+                                                              (shrink-window (- h
+                                                                                compilation-window-height))
+                                                              w))))))
+
+(add-to-list 'display-buffer-alist (cons (lambda (buffer alist)
+                                           (with-current-buffer buffer (eq major-mode
+                                                                           'compilation-mode)))
+                                         (cons (lambda (buffer alist)
+                                                 (show-compilation-buffer))
+                                               '())))
 
 
 ;; Recognize test suite output
