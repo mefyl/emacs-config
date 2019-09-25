@@ -34,6 +34,9 @@
           (message "No compilation command found.")))
     (recompile)))
 
+(setq compilation-window-height 14)
+(setq compilation-scroll-output t)
+
 (defun show-compilation-buffer ()
   "Show compilation buffer, opening a new window if needed"
   (let ((window (get-buffer-window "*compilation*" t)))

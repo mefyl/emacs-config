@@ -258,11 +258,6 @@
                                            (select-frame f)
                                            (configure-frame)))
 
-;; Compilation
-
-(setq compilation-window-height 14)
-(setq compilation-scroll-output t)
-
 ;; make C-Q RET insert a \n, not a ^M
 
 (defadvice insert-and-inherit (before ENCULAY activate)
