@@ -176,6 +176,16 @@ number of logical processing unit on this system")
 
 ;;;***
 
+;;;### (autoloads nil "my-dune-mode" "my-dune-mode.el" (0 0 0 0))
+;;; Generated autoloads from my-dune-mode.el
+
+(autoload 'dune-mode-setup "my-dune-mode" "\
+
+
+\(fn)" nil nil)
+
+;;;***
+
 ;;;### (autoloads nil "my-elisp" "my-elisp.el" (0 0 0 0))
 ;;; Generated autoloads from my-elisp.el
 

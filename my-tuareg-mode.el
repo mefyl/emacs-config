@@ -6,13 +6,6 @@
 
 ;;;###autoload
 (defun tuareg-mode-setup ()
-
-  ;; Add OPAM files to path.
-  (let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
-    (when (and opam-share
-               (file-directory-p opam-share))
-      (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))))
-
   ;; Merlin
   (if
       (require 'merlin nil 'noerror)

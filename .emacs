@@ -19,6 +19,19 @@
   "Location of the configuration files")
 (add-to-list 'load-path conf-dir)
 (add-to-list 'load-path (concat (getenv "HOME") "/local/share/emacs/site-lisp/"))
+
+(let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+  (when (and opam-share
+             (file-directory-p opam-share))
+    (let ((opam-load-path (expand-file-name "emacs/site-lisp" opam-share)))
+      (add-to-list 'load-path opam-load-path)
+      (let ((autoload-path (expand-file-name "autoload.el" opam-load-path)))
+        (when (not (file-exists-p autoload-path))
+          (let ((generated-autoload-file autoload-path))
+            (message "generating %s" generated-autoload-file)
+            (update-directory-autoloads opam-load-path)))
+        (load-file autoload-path)))))
+
 (set 'generated-autoload-file (concat conf-dir "my-autoload.el"))
 (require 'my-autoload)
 (require 'my-elisp)
@@ -33,6 +46,7 @@
 (add-hook 'go-mode-hook 'go-mode-setup)
 (add-hook 'magit-mode-hook 'magit-setup)
 (add-hook 'tuareg-load-hook 'tuareg-mode-setup)
+(add-hook 'dune-mode-hook 'dune-mode-setup)
 (eval-after-load "lisp-mode" '(lisp-mode-setup))
 
 (defconst has-gnuserv (fboundp 'gnuserv-start)
@@ -149,7 +163,6 @@
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
 (add-to-list 'auto-mode-alist '("drake$" . python-mode))
 (add-to-list 'auto-mode-alist '("drakefile$" . python-mode))
-(add-to-list 'auto-mode-alist '("dune\\(-project\\)?$" . lisp-mode))
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
 
 ;; Markdown
