@@ -4,10 +4,10 @@
   ;; ------ ;;
   ;; Format ;;
   ;; ------ ;;
-  (require 'elisp-format)
-  (add-hook 'before-save-hook (lambda ()
-                                (when (derived-mode-p 'emacs-lisp-mode 'lisp-mode)
-                                  (elisp-format-buffer))))
+  (when (require 'elisp-format nil 'noerror)
+    (add-hook 'before-save-hook (lambda ()
+				  (when (derived-mode-p 'emacs-lisp-mode 'lisp-mode)
+				    (elisp-format-buffer)))))
 
   ;; ------------- ;;
   ;; Configuration ;;
