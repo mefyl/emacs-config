@@ -7,6 +7,26 @@
 ;; Thanks go to Micha <micha@lrde.epita.fr> for his help
 ;;
 
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl
+    (warn
+     "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize)
+
 (defun may-load (path)
   "Load a file iff it exists."
   (when (file-readable-p path)
@@ -25,7 +45,7 @@
              (file-directory-p opam-share))
     (let ((opam-load-path (expand-file-name "emacs/site-lisp" opam-share)))
       (add-to-list 'load-path opam-load-path)
-      (let ((autoload-path (expand-file-name "autoload.el" opam-load-path)))
+      (let ((autoload-path (expand-file-name "opam-autoload.el" opam-load-path)))
         (when (not (file-exists-p autoload-path))
           (let ((generated-autoload-file autoload-path))
             (message "generating %s" generated-autoload-file)
@@ -336,7 +356,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(after-save-hook (quote (executable-make-buffer-file-executable-if-script-p)))
- '(wdired-allow-to-change-permissions t)
  '(css-indent-offset 2)
  '(gdb-max-frames 1024)
  '(ido-auto-merge-work-directories-length -1)
@@ -348,10 +367,12 @@
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(line-move-visual nil)
+ '(package-selected-packages (quote (magit python-black elisp-format flycheck auto-complete)))
  '(python-indent 2)
  '(python-indent-offset 2)
  '(require-final-newline t)
- '(safe-local-variable-values (quote ((encoding . utf-8)))))
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(wdired-allow-to-change-permissions t))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
