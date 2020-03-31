@@ -1,12 +1,12 @@
 (require 'compile)
 
 (defvar compilation-files
-  '(("drakefile" . (lambda (p)
+  '(("Makefile" . (lambda (p)
+                    (concat "make -C " p)))
+    ("drakefile" . (lambda (p)
                      (concat "drake " p " --workdir " p "/_build")))
     ("dune-project" . (lambda (p)
-                        (concat "dune build --root " p)))
-    ("Makefile" . (lambda (p)
-                    (concat "make -C " p)))))
+                        (concat "dune build --root " p)))))
 
 (defun find-compilation-file (root)
   (let ((root (file-name-as-directory root)))
@@ -59,10 +59,17 @@
 
 
 ;; Recognize test suite output
-(add-to-list 'compilation-error-regexp-alist '("^\\(PASS\\|SKIP\\|XFAIL\\|TFAIL\\): \\(.*\\)$" 2 ()
-                                               () 0 2))
-(add-to-list 'compilation-error-regexp-alist '("^\\(FAIL\\|XPASS\\): \\(.*\\)$" 2 ()
-                                               () 2 2))
+;; (add-to-list 'compilation-error-regexp-alist '("^\\(PASS\\|SKIP\\|XFAIL\\|TFAIL\\): \\(.*\\)$" 2 ()
+;;                                                () 0 2))
+;; (add-to-list 'compilation-error-regexp-alist '("^\\(FAIL\\|XPASS\\): \\(.*\\)$" 2 ()
+;;                                                () 2 2))
+
+;; Interpret escape sequences
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region compilation-filter-start (point))))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;;;###autoload
 (defconst system-cores-logical (string-to-number (shell-command-to-string "nproc"))
