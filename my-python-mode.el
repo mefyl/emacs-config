@@ -1,5 +1,4 @@
-(custom-set-variables
- '(python-indent 2))
+(custom-set-variables '(python-indent 2))
 
 ;;;###autoload
 (defun python-mode-setup ()
@@ -20,19 +19,15 @@
   ;; -------- ;;
 
   ;; comment
-  (define-key
-    python-mode-map
-    [(control c) (control c)]
-    'comment-region)
+  (define-key python-mode-map [(control c)
+                               (control c)] 'comment-region)
 
   ;; rebox
-  (define-key
-    python-mode-map
-    [(meta q)]
-    'my-rebox-comment)
+  (define-key python-mode-map [(meta q)] 'my-rebox-comment)
+  (python-black-on-save-mode))
 
-)
-
+(custom-set-variables '(python-black-command "cblack")
+                      '(python-black-extra-args '("--line-length" "80")))
 (add-hook 'python-mode-hook 'python-mode-setup)
 
 (provide 'my-python-mode)
