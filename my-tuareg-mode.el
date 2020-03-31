@@ -12,8 +12,9 @@
       (progn (add-hook 'tuareg-mode-hook 'merlin-mode t)
              (add-hook 'caml-mode-hook 'merlin-mode t)
              (setq merlin-command 'opam) ;; Use opam switch to lookup ocamlmerlin binary
-             (require 'auto-complete)
-             (setq merlin-use-auto-complete-mode 'easy))
+             (if (require 'auto-complete nil 'noerror)
+                 (setq merlin-use-auto-complete-mode 'easy)
+               (warn "auto-complete is not installed")))
     (warn
      "merlin not installed"))
 
