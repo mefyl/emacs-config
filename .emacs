@@ -184,6 +184,7 @@ There are two things you can do about this warning:
 (add-to-list 'auto-mode-alist '("\\.y$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yy$" . c++-mode))
+(add-to-list 'auto-mode-alist '("dune-project$" . dune-mode))
 (add-to-list 'auto-mode-alist '("configure$" . sh-mode))
 (add-to-list 'auto-mode-alist '("drake$" . python-mode))
 (add-to-list 'auto-mode-alist '("drakefile$" . python-mode))
