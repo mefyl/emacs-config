@@ -44,13 +44,17 @@ There are two things you can do about this warning:
   (when (and opam-share
              (file-directory-p opam-share))
     (let ((opam-load-path (expand-file-name "emacs/site-lisp" opam-share)))
-      (add-to-list 'load-path opam-load-path)
-      (let ((autoload-path (expand-file-name "opam-autoload.el" opam-load-path)))
-        (when (not (file-exists-p autoload-path))
-          (let ((generated-autoload-file autoload-path))
-            (message "generating %s" generated-autoload-file)
-            (update-directory-autoloads opam-load-path)))
-        (load-file autoload-path)))))
+      (if (file-directory-p opam-load-path)
+          (progn (add-to-list 'load-path opam-load-path)
+                 (let ((autoload-path (expand-file-name "opam-autoload.el" opam-load-path)))
+                   (when (not (file-exists-p autoload-path))
+                     (let ((generated-autoload-file autoload-path))
+                       (message "generating %s" generated-autoload-file)
+                       (update-directory-autoloads opam-load-path)))
+                   (load-file autoload-path)))
+        (warn
+         "OPAM lisp directory %S does not exist"
+         opam-load-path)))))
 
 (set 'generated-autoload-file (concat conf-dir "my-autoload.el"))
 (require 'my-autoload)
