@@ -372,7 +372,8 @@ There are two things you can do about this warning:
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(line-move-visual nil)
- '(package-selected-packages (quote (magit python-black elisp-format flycheck auto-complete)))
+ '(package-selected-packages (quote (vue-mode mmm-mode magit python-black elisp-format flycheck
+                                              auto-complete)))
  '(python-indent 2)
  '(python-indent-offset 2)
  '(require-final-newline t)
